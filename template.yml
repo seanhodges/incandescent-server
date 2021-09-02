@@ -1,0 +1,59 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  Server for the Incandescent app
+
+# Transform section specifies one or more macros that AWS CloudFormation uses to process your template
+# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/transform-section-structure.html
+Transform: AWS::Serverless-2016-10-31
+
+# Shared configuration for all resources, more in
+# https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    PermissionsBoundary: !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/${AppId}-${AWS::Region}-PermissionsBoundary'
+
+Parameters:
+  AppId:
+    Type: String
+
+Resources:
+  IncandescentLambdaBasicExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          Effect: Allow
+          Principal:
+            Service: lambda.amazonaws.com
+          Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+
+  PythonRestClientLambdaLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: ./src/layers/restClientLambdaLayer/restClientLambdaLayer.zip
+      CompatibleRuntimes:
+        - python3.9
+
+  SendOperationFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./src/handlers/sendOperation
+      Handler: send-operation.lambda_handler
+      Runtime: python3.9
+      Layers:
+        - !Ref PythonRestClientLambdaLayer
+      Role: !GetAtt IncandescentLambdaBasicExecutionRole.Arn
+      Events:
+        SendOperation:
+          Type: Api
+          Properties:
+            Path: /devices/{device}/operations
+            Method: patch
+      
+Outputs:
+  ServerApi:
+    Description: URL for the server API
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com"

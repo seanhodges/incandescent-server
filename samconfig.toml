@@ -1,0 +1,11 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "test-stack"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1uhmeo0ymx86b"
+s3_prefix = "test-stack"
+region = "eu-west-2"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "AppId=\"test-stack\""

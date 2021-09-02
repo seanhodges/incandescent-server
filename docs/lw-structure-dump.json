@@ -1,0 +1,1907 @@
+{
+    "name": "My Group",
+    "groupId": "5b8aa9b4d36c330fd5b4e100-5b8aa9b4d36c330fd5b4e101",
+    "devices": [
+        {
+            "deviceId": "5b8aa9b4d36c330fd5b4e100-7-3157332334+1",
+            "name": "Bear lamp",
+            "productCode": "LW320",
+            "featureSets": [
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5bb4bd41d9f2a77b77b2a6f8",
+                    "name": "Bear lamp",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-56-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-57-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-158-3157332334+1",
+                            "type": "identify",
+                            "writable": true
+                        }
+                    ]
+                }
+            ],
+            "product": "LW320",
+            "device": "socket",
+            "desc": "Plug-In Socket",
+            "type": "lwrfOneWay_v1",
+            "cat": "Power",
+            "gen": 1
+        },
+        {
+            "deviceId": "5b8aa9b4d36c330fd5b4e100-8-3157332334+1",
+            "name": "Hair straighteners",
+            "productCode": "LW320",
+            "featureSets": [
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5bb4be67d9f2a77b77b2ff62",
+                    "name": "Xmas Tree",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-58-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-59-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-159-3157332334+1",
+                            "type": "identify",
+                            "writable": true
+                        }
+                    ]
+                }
+            ],
+            "product": "LW320",
+            "device": "socket",
+            "desc": "Plug-In Socket",
+            "type": "lwrfOneWay_v1",
+            "cat": "Power",
+            "gen": 1
+        },
+        {
+            "deviceId": "5b8aa9b4d36c330fd5b4e100-19-3157332334+1",
+            "name": "Kitchen New",
+            "productCode": "L22MK2",
+            "featureSets": [
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5e6e66730ccbc103e52c8494",
+                    "name": "Main light",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-209-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-210-3157332334+1",
+                            "type": "dimLevel",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-211-3157332334+1",
+                            "type": "dimSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-212-3157332334+1",
+                            "type": "bulbSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-213-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-214-3157332334+1",
+                            "type": "power",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-215-3157332334+1",
+                            "type": "energy",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-203-3157332334+1",
+                            "type": "identify",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-204-3157332334+1",
+                            "type": "reset",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-205-3157332334+1",
+                            "type": "upgrade",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-206-3157332334+1",
+                            "type": "diagnostics",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-207-3157332334+1",
+                            "type": "periodOfBroadcast",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-208-3157332334+1",
+                            "type": "rgbColor",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-381-3157332334+1",
+                            "type": "error",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-382-3157332334+1",
+                            "type": "dimProfileCurve",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-383-3157332334+1",
+                            "type": "dimProfileTimebase",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-384-3157332334+1",
+                            "type": "uiButton",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-385-3157332334+1",
+                            "type": "uiButtonPair",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-386-3157332334+1",
+                            "type": "uiIndicator",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-387-3157332334+1",
+                            "type": "uiIOMap",
+                            "writable": true
+                        }
+                    ]
+                },
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5e6e66730ccbc103e52c8495",
+                    "name": "Bear light",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-216-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-217-3157332334+1",
+                            "type": "dimLevel",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-218-3157332334+1",
+                            "type": "dimSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-219-3157332334+1",
+                            "type": "bulbSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-220-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-221-3157332334+1",
+                            "type": "power",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-222-3157332334+1",
+                            "type": "energy",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-388-3157332334+1",
+                            "type": "dimProfileCurve",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-389-3157332334+1",
+                            "type": "dimProfileTimebase",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-390-3157332334+1",
+                            "type": "uiButton",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-391-3157332334+1",
+                            "type": "uiButtonPair",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-392-3157332334+1",
+                            "type": "uiIndicator",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-393-3157332334+1",
+                            "type": "uiIOMap",
+                            "writable": true
+                        }
+                    ]
+                }
+            ],
+            "product": "L22MK2",
+            "device": "dimmer",
+            "desc": "Smart Dimmer",
+            "type": "lwrfTwoWay_v2",
+            "cat": "Lighting",
+            "gen": 2
+        },
+        {
+            "deviceId": "5b8aa9b4d36c330fd5b4e100-27-3157332334+1",
+            "name": "Bedroom socket",
+            "productCode": "L42",
+            "featureSets": [
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5fc3a82940e2c0457d37e194",
+                    "name": "Bedroom socket",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-332-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-333-3157332334+1",
+                            "type": "outletInUse",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-334-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-335-3157332334+1",
+                            "type": "power",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-336-3157332334+1",
+                            "type": "energy",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-325-3157332334+1",
+                            "type": "identify",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-326-3157332334+1",
+                            "type": "reset",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-327-3157332334+1",
+                            "type": "upgrade",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-328-3157332334+1",
+                            "type": "diagnostics",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-329-3157332334+1",
+                            "type": "periodOfBroadcast",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-330-3157332334+1",
+                            "type": "rgbColor",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-331-3157332334+1",
+                            "type": "voltage",
+                            "writable": true
+                        }
+                    ]
+                },
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5fc3a82940e2c0457d37e195",
+                    "name": "Bedroom TV",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-337-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-338-3157332334+1",
+                            "type": "outletInUse",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-339-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-340-3157332334+1",
+                            "type": "power",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-341-3157332334+1",
+                            "type": "energy",
+                            "writable": true
+                        }
+                    ]
+                }
+            ],
+            "product": "L42",
+            "device": "socket",
+            "desc": "Smart Socket",
+            "type": "lwrfTwoWay_v2",
+            "cat": "Power",
+            "gen": 2
+        },
+        {
+            "deviceId": "5b8aa9b4d36c330fd5b4e100-28-3157332334+1",
+            "name": "Main light",
+            "productCode": "L21",
+            "featureSets": [
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5fc3b097ac1a800d721b0614",
+                    "name": "Main light",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-342-3157332334+1",
+                            "type": "identify",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-343-3157332334+1",
+                            "type": "reset",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-344-3157332334+1",
+                            "type": "upgrade",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-345-3157332334+1",
+                            "type": "diagnostics",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-346-3157332334+1",
+                            "type": "periodOfBroadcast",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-347-3157332334+1",
+                            "type": "rgbColor",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-348-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-349-3157332334+1",
+                            "type": "dimLevel",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-350-3157332334+1",
+                            "type": "dimSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-351-3157332334+1",
+                            "type": "bulbSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-352-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-353-3157332334+1",
+                            "type": "power",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-354-3157332334+1",
+                            "type": "energy",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-417-3157332334+1",
+                            "type": "error",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-418-3157332334+1",
+                            "type": "dimProfileCurve",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-419-3157332334+1",
+                            "type": "dimProfileTimebase",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-420-3157332334+1",
+                            "type": "uiButton",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-421-3157332334+1",
+                            "type": "uiButtonPair",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-422-3157332334+1",
+                            "type": "uiIndicator",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-423-3157332334+1",
+                            "type": "uiIOMap",
+                            "writable": true
+                        }
+                    ]
+                }
+            ],
+            "product": "L21",
+            "device": "dimmer",
+            "desc": "Smart Dimmer",
+            "type": "lwrfTwoWay_v2",
+            "cat": "Lighting",
+            "gen": 2
+        },
+        {
+            "deviceId": "5b8aa9b4d36c330fd5b4e100-6-3157332334+1",
+            "name": "Kettle",
+            "productCode": "LW320",
+            "featureSets": [
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5bb4bbfdd9f2a77b77b24677",
+                    "name": "Office desk old",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-54-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-55-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-157-3157332334+1",
+                            "type": "identify",
+                            "writable": true
+                        }
+                    ]
+                }
+            ],
+            "product": "LW320",
+            "device": "socket",
+            "desc": "Plug-In Socket",
+            "type": "lwrfOneWay_v1",
+            "cat": "Power",
+            "gen": 1
+        },
+        {
+            "deviceId": "5b8aa9b4d36c330fd5b4e100-16-3157332334+1",
+            "name": "Under cabinet",
+            "productCode": "LW560",
+            "featureSets": [
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5c7bd5e848e35678600f653a",
+                    "name": "Cabinet lights",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-153-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-154-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-155-3157332334+1",
+                            "type": "dimLevel",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-160-3157332334+1",
+                            "type": "identify",
+                            "writable": true
+                        }
+                    ]
+                }
+            ],
+            "product": "LW560",
+            "device": "light",
+            "desc": "CFL Bulb",
+            "type": "lwrfOneWay_v1",
+            "cat": "Lighting",
+            "gen": 1
+        },
+        {
+            "deviceId": "5b8aa9b4d36c330fd5b4e100-24-3157332334+1",
+            "name": "Landing",
+            "productCode": "L22MK2",
+            "featureSets": [
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5fc3933c35c2500d60a803fe",
+                    "name": "Hall light",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-277-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-278-3157332334+1",
+                            "type": "dimLevel",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-279-3157332334+1",
+                            "type": "dimSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-280-3157332334+1",
+                            "type": "bulbSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-281-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-282-3157332334+1",
+                            "type": "power",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-283-3157332334+1",
+                            "type": "energy",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-271-3157332334+1",
+                            "type": "identify",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-272-3157332334+1",
+                            "type": "reset",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-273-3157332334+1",
+                            "type": "upgrade",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-274-3157332334+1",
+                            "type": "diagnostics",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-275-3157332334+1",
+                            "type": "periodOfBroadcast",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-276-3157332334+1",
+                            "type": "rgbColor",
+                            "writable": true
+                        }
+                    ]
+                },
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5fc3933c35c2500d60a803ff",
+                    "name": "Landing light",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-284-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-285-3157332334+1",
+                            "type": "dimLevel",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-286-3157332334+1",
+                            "type": "dimSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-287-3157332334+1",
+                            "type": "bulbSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-288-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-289-3157332334+1",
+                            "type": "power",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-290-3157332334+1",
+                            "type": "energy",
+                            "writable": true
+                        }
+                    ]
+                }
+            ],
+            "product": "L22MK2",
+            "device": "dimmer",
+            "desc": "Smart Dimmer",
+            "type": "lwrfTwoWay_v2",
+            "cat": "Lighting",
+            "gen": 2
+        },
+        {
+            "deviceId": "5b8aa9b4d36c330fd5b4e100-26-3157332334+1",
+            "name": "Computer",
+            "productCode": "L42",
+            "featureSets": [
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5fc3a80540e2c0457d37e18b",
+                    "name": "PC",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-308-3157332334+1",
+                            "type": "identify",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-309-3157332334+1",
+                            "type": "reset",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-310-3157332334+1",
+                            "type": "upgrade",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-311-3157332334+1",
+                            "type": "diagnostics",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-312-3157332334+1",
+                            "type": "periodOfBroadcast",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-313-3157332334+1",
+                            "type": "rgbColor",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-314-3157332334+1",
+                            "type": "voltage",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-315-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-316-3157332334+1",
+                            "type": "outletInUse",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-317-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-318-3157332334+1",
+                            "type": "power",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-319-3157332334+1",
+                            "type": "energy",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-407-3157332334+1",
+                            "type": "error",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-408-3157332334+1",
+                            "type": "socketSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-409-3157332334+1",
+                            "type": "current",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-410-3157332334+1",
+                            "type": "uiButton",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-411-3157332334+1",
+                            "type": "uiButtonPair",
+                            "writable": true
+                        }
+                    ]
+                },
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5fc3a80540e2c0457d37e18c",
+                    "name": "Lamp",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-320-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-321-3157332334+1",
+                            "type": "outletInUse",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-322-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-323-3157332334+1",
+                            "type": "power",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-324-3157332334+1",
+                            "type": "energy",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-412-3157332334+1",
+                            "type": "socketSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-413-3157332334+1",
+                            "type": "voltage",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-414-3157332334+1",
+                            "type": "current",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-415-3157332334+1",
+                            "type": "uiButton",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-416-3157332334+1",
+                            "type": "uiButtonPair",
+                            "writable": true
+                        }
+                    ]
+                }
+            ],
+            "product": "L42",
+            "device": "socket",
+            "desc": "Smart Socket",
+            "type": "lwrfTwoWay_v2",
+            "cat": "Power",
+            "gen": 2
+        },
+        {
+            "deviceId": "5b8aa9b4d36c330fd5b4e100-13-3157332334+1",
+            "name": "Main LIGHT",
+            "productCode": "L22",
+            "featureSets": [
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5c30fb7d3e9acc249e83cdc5",
+                    "name": "Main light",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-120-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-121-3157332334+1",
+                            "type": "dimLevel",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-122-3157332334+1",
+                            "type": "dimSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-123-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-124-3157332334+1",
+                            "type": "power",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-125-3157332334+1",
+                            "type": "energy",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-114-3157332334+1",
+                            "type": "identify",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-115-3157332334+1",
+                            "type": "reset",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-116-3157332334+1",
+                            "type": "upgrade",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-117-3157332334+1",
+                            "type": "diagnostics",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-118-3157332334+1",
+                            "type": "periodOfBroadcast",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-119-3157332334+1",
+                            "type": "rgbColor",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-168-3157332334+1",
+                            "type": "bulbSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-394-3157332334+1",
+                            "type": "error",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-395-3157332334+1",
+                            "type": "dimProfileCurve",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-396-3157332334+1",
+                            "type": "dimProfileTimebase",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-397-3157332334+1",
+                            "type": "uiButton",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-398-3157332334+1",
+                            "type": "uiButtonPair",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-399-3157332334+1",
+                            "type": "uiIndicator",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-400-3157332334+1",
+                            "type": "uiIOMap",
+                            "writable": true
+                        }
+                    ]
+                },
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5c30fb7d3e9acc249e83cdc6",
+                    "name": "Cabinet lights",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-126-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-127-3157332334+1",
+                            "type": "dimLevel",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-128-3157332334+1",
+                            "type": "dimSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-129-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-130-3157332334+1",
+                            "type": "power",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-131-3157332334+1",
+                            "type": "energy",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-169-3157332334+1",
+                            "type": "bulbSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-401-3157332334+1",
+                            "type": "dimProfileCurve",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-402-3157332334+1",
+                            "type": "dimProfileTimebase",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-403-3157332334+1",
+                            "type": "uiButton",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-404-3157332334+1",
+                            "type": "uiButtonPair",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-405-3157332334+1",
+                            "type": "uiIndicator",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-406-3157332334+1",
+                            "type": "uiIOMap",
+                            "writable": true
+                        }
+                    ]
+                }
+            ],
+            "product": "L22",
+            "device": "dimmer",
+            "desc": "Smart Dimmer",
+            "type": "lwrfTwoWay_v2",
+            "cat": "Lighting",
+            "gen": 2
+        },
+        {
+            "deviceId": "5b8aa9b4d36c330fd5b4e100-14-3157332334+1",
+            "name": "Kettle",
+            "productCode": "L42",
+            "featureSets": [
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5c3249423e9acc249e854b59",
+                    "name": "Microwave",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-139-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-140-3157332334+1",
+                            "type": "outletInUse",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-141-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-142-3157332334+1",
+                            "type": "power",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-143-3157332334+1",
+                            "type": "energy",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-132-3157332334+1",
+                            "type": "identify",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-133-3157332334+1",
+                            "type": "reset",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-134-3157332334+1",
+                            "type": "upgrade",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-135-3157332334+1",
+                            "type": "diagnostics",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-136-3157332334+1",
+                            "type": "periodOfBroadcast",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-137-3157332334+1",
+                            "type": "rgbColor",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-138-3157332334+1",
+                            "type": "voltage",
+                            "writable": true
+                        }
+                    ]
+                },
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5c3249423e9acc249e854b5a",
+                    "name": "Kettle",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-144-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-145-3157332334+1",
+                            "type": "outletInUse",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-146-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-147-3157332334+1",
+                            "type": "power",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-148-3157332334+1",
+                            "type": "energy",
+                            "writable": true
+                        }
+                    ]
+                }
+            ],
+            "product": "L42",
+            "device": "socket",
+            "desc": "Smart Socket",
+            "type": "lwrfTwoWay_v2",
+            "cat": "Power",
+            "gen": 2
+        },
+        {
+            "deviceId": "5b8aa9b4d36c330fd5b4e100-9-3157332334+1",
+            "name": "Nursery light",
+            "productCode": "L21",
+            "featureSets": [
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5bc1e286070efe2d2e82166a",
+                    "name": "Nursery light",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-60-3157332334+1",
+                            "type": "identify",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-61-3157332334+1",
+                            "type": "reset",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-62-3157332334+1",
+                            "type": "upgrade",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-63-3157332334+1",
+                            "type": "diagnostics",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-64-3157332334+1",
+                            "type": "periodOfBroadcast",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-65-3157332334+1",
+                            "type": "rgbColor",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-66-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-67-3157332334+1",
+                            "type": "dimLevel",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-68-3157332334+1",
+                            "type": "dimSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-69-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-70-3157332334+1",
+                            "type": "power",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-71-3157332334+1",
+                            "type": "energy",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-165-3157332334+1",
+                            "type": "bulbSetup",
+                            "writable": true
+                        }
+                    ]
+                }
+            ],
+            "product": "L21",
+            "device": "dimmer",
+            "desc": "Smart Dimmer",
+            "type": "lwrfTwoWay_v2",
+            "cat": "Lighting",
+            "gen": 2
+        },
+        {
+            "deviceId": "5b8aa9b4d36c330fd5b4e100-15-3157332334+1",
+            "name": "Energy monitor",
+            "productCode": "LW600",
+            "featureSets": [
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5c390e49cd637343f74c5132",
+                    "name": "Energy monitor",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-149-3157332334+1",
+                            "type": "power",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-150-3157332334+1",
+                            "type": "energy",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-151-3157332334+1",
+                            "type": "rssi",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-161-3157332334+1",
+                            "type": "identify",
+                            "writable": true
+                        }
+                    ]
+                }
+            ],
+            "product": "LW600",
+            "device": "Energy Monitor",
+            "desc": "Energy Monitor",
+            "type": "lwrfTwoWay_v1",
+            "cat": "Sensor",
+            "gen": 1
+        },
+        {
+            "deviceId": "5b8aa9b4d36c330fd5b4e100-17-3157332334+1",
+            "name": "Downstairs light",
+            "productCode": "L22MK2",
+            "featureSets": [
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5db436d416483b7f18723f2d",
+                    "name": "Upstairs light",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-176-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-177-3157332334+1",
+                            "type": "dimLevel",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-178-3157332334+1",
+                            "type": "dimSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-179-3157332334+1",
+                            "type": "bulbSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-180-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-181-3157332334+1",
+                            "type": "power",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-182-3157332334+1",
+                            "type": "energy",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-170-3157332334+1",
+                            "type": "identify",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-171-3157332334+1",
+                            "type": "reset",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-172-3157332334+1",
+                            "type": "upgrade",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-173-3157332334+1",
+                            "type": "diagnostics",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-174-3157332334+1",
+                            "type": "periodOfBroadcast",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-175-3157332334+1",
+                            "type": "rgbColor",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-368-3157332334+1",
+                            "type": "error",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-369-3157332334+1",
+                            "type": "dimProfileCurve",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-370-3157332334+1",
+                            "type": "dimProfileTimebase",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-371-3157332334+1",
+                            "type": "uiButton",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-372-3157332334+1",
+                            "type": "uiButtonPair",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-373-3157332334+1",
+                            "type": "uiIndicator",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-374-3157332334+1",
+                            "type": "uiIOMap",
+                            "writable": true
+                        }
+                    ]
+                },
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5db436d416483b7f18723f2e",
+                    "name": "Downstairs light",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-183-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-184-3157332334+1",
+                            "type": "dimLevel",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-185-3157332334+1",
+                            "type": "dimSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-186-3157332334+1",
+                            "type": "bulbSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-187-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-188-3157332334+1",
+                            "type": "power",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-189-3157332334+1",
+                            "type": "energy",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-375-3157332334+1",
+                            "type": "dimProfileCurve",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-376-3157332334+1",
+                            "type": "dimProfileTimebase",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-377-3157332334+1",
+                            "type": "uiButton",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-378-3157332334+1",
+                            "type": "uiButtonPair",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-379-3157332334+1",
+                            "type": "uiIndicator",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-380-3157332334+1",
+                            "type": "uiIOMap",
+                            "writable": true
+                        }
+                    ]
+                }
+            ],
+            "product": "L22MK2",
+            "device": "dimmer",
+            "desc": "Smart Dimmer",
+            "type": "lwrfTwoWay_v2",
+            "cat": "Lighting",
+            "gen": 2
+        },
+        {
+            "deviceId": "5b8aa9b4d36c330fd5b4e100-21-3157332334+1",
+            "name": "Porch light",
+            "productCode": "LW560",
+            "featureSets": [
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5eed19bd37b5060df9ddb794",
+                    "name": "Porch light",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-227-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-228-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-229-3157332334+1",
+                            "type": "dimLevel",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-230-3157332334+1",
+                            "type": "identify",
+                            "writable": true
+                        }
+                    ]
+                }
+            ],
+            "product": "LW560",
+            "device": "light",
+            "desc": "CFL Bulb",
+            "type": "lwrfOneWay_v1",
+            "cat": "Lighting",
+            "gen": 1
+        },
+        {
+            "deviceId": "5b8aa9b4d36c330fd5b4e100-23-3157332334+1",
+            "name": "Main light",
+            "productCode": "L22EU",
+            "featureSets": [
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5fc390a535c2500d60a80344",
+                    "name": "Main light",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-257-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-258-3157332334+1",
+                            "type": "dimLevel",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-259-3157332334+1",
+                            "type": "dimSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-260-3157332334+1",
+                            "type": "bulbSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-261-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-262-3157332334+1",
+                            "type": "power",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-263-3157332334+1",
+                            "type": "energy",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-251-3157332334+1",
+                            "type": "identify",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-252-3157332334+1",
+                            "type": "reset",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-253-3157332334+1",
+                            "type": "upgrade",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-254-3157332334+1",
+                            "type": "diagnostics",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-255-3157332334+1",
+                            "type": "periodOfBroadcast",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-256-3157332334+1",
+                            "type": "rgbColor",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-355-3157332334+1",
+                            "type": "error",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-356-3157332334+1",
+                            "type": "dimProfileCurve",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-357-3157332334+1",
+                            "type": "dimProfileTimebase",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-358-3157332334+1",
+                            "type": "uiButton",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-359-3157332334+1",
+                            "type": "uiButtonPair",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-360-3157332334+1",
+                            "type": "uiIndicator",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-361-3157332334+1",
+                            "type": "uiIOMap",
+                            "writable": true
+                        }
+                    ]
+                },
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5fc390a535c2500d60a80345",
+                    "name": "Lamp",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-264-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-265-3157332334+1",
+                            "type": "dimLevel",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-266-3157332334+1",
+                            "type": "dimSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-267-3157332334+1",
+                            "type": "bulbSetup",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-268-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-269-3157332334+1",
+                            "type": "power",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-270-3157332334+1",
+                            "type": "energy",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-362-3157332334+1",
+                            "type": "dimProfileCurve",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-363-3157332334+1",
+                            "type": "dimProfileTimebase",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-364-3157332334+1",
+                            "type": "uiButton",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-365-3157332334+1",
+                            "type": "uiButtonPair",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-366-3157332334+1",
+                            "type": "uiIndicator",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-367-3157332334+1",
+                            "type": "uiIOMap",
+                            "writable": true
+                        }
+                    ]
+                }
+            ],
+            "product": "L22EU",
+            "device": "dimmer",
+            "desc": "Smart Dimmer",
+            "type": "lwrfTwoWay_v2",
+            "cat": "Lighting",
+            "gen": 2
+        },
+        {
+            "deviceId": "5b8aa9b4d36c330fd5b4e100-25-3157332334+1",
+            "name": "Washing machine",
+            "productCode": "L42",
+            "featureSets": [
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5fc3a6da40e2c0457d37e11d",
+                    "name": "Washing machine",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-298-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-299-3157332334+1",
+                            "type": "outletInUse",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-300-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-301-3157332334+1",
+                            "type": "power",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-302-3157332334+1",
+                            "type": "energy",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-291-3157332334+1",
+                            "type": "identify",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-292-3157332334+1",
+                            "type": "reset",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-293-3157332334+1",
+                            "type": "upgrade",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-294-3157332334+1",
+                            "type": "diagnostics",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-295-3157332334+1",
+                            "type": "periodOfBroadcast",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-296-3157332334+1",
+                            "type": "rgbColor",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-297-3157332334+1",
+                            "type": "voltage",
+                            "writable": true
+                        }
+                    ]
+                },
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5fc3a6da40e2c0457d37e11e",
+                    "name": "Tumble dryer",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-303-3157332334+1",
+                            "type": "switch",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-304-3157332334+1",
+                            "type": "outletInUse",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-305-3157332334+1",
+                            "type": "protection",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-306-3157332334+1",
+                            "type": "power",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-307-3157332334+1",
+                            "type": "energy",
+                            "writable": true
+                        }
+                    ]
+                }
+            ],
+            "product": "L42",
+            "device": "socket",
+            "desc": "Smart Socket",
+            "type": "lwrfTwoWay_v2",
+            "cat": "Power",
+            "gen": 2
+        },
+        {
+            "deviceId": "5b8aa9b4d36c330fd5b4e100-1-3157332334+1",
+            "name": "LinkPlus",
+            "productCode": "L2",
+            "featureSets": [
+                {
+                    "featureSetId": "5b8aa9b4d36c330fd5b4e100-5b8aa9b4d36c330fd5b4e10a",
+                    "name": "LinkPlus",
+                    "features": [
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-1-3157332334+1",
+                            "type": "currentTime",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-2-3157332334+1",
+                            "type": "buttonPress",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-3-3157332334+1",
+                            "type": "time",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-4-3157332334+1",
+                            "type": "date",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-5-3157332334+1",
+                            "type": "monthArray",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-6-3157332334+1",
+                            "type": "weekdayArray",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-7-3157332334+1",
+                            "type": "timeZone",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-8-3157332334+1",
+                            "type": "locationLongitude",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-9-3157332334+1",
+                            "type": "locationLatitude",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-10-3157332334+1",
+                            "type": "duskTime",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-11-3157332334+1",
+                            "type": "dawnTime",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-12-3157332334+1",
+                            "type": "rgbColor",
+                            "writable": true
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-13-3157332334+1",
+                            "type": "day",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-14-3157332334+1",
+                            "type": "month",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-15-3157332334+1",
+                            "type": "year",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-152-3157332334+1",
+                            "type": "weekday",
+                            "writable": false
+                        },
+                        {
+                            "featureId": "5b8aa9b4d36c330fd5b4e100-156-3157332334+1",
+                            "type": "identify",
+                            "writable": true
+                        }
+                    ]
+                }
+            ],
+            "product": "L2",
+            "device": "LinkPlus",
+            "desc": "Central Hub",
+            "type": "lwrfTwoWay_v2",
+            "cat": "Hub",
+            "gen": 2
+        }
+    ]
+}
