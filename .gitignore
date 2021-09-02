@@ -1,1 +1,3 @@
+.aws-sam
+packaged-template.yaml
 src/layers/restClientLambdaLayer/python/

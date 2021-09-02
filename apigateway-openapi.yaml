@@ -1,0 +1,92 @@
+openapi: "3.0.1"
+info:
+  title: "Incandescent-Server"
+  version: "2021-08-23T20:24:26Z"
+paths:
+  /devices/{device}/operations:
+    patch:
+      parameters:
+      - name: "device"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OperationInvoke"
+        required: true
+      responses:
+        "400":
+          description: "400 response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - api_key: []
+      x-amazon-apigateway-request-validator: "Validate body"
+      x-amazon-apigateway-integration:
+        type: "aws"
+        httpMethod: "POST"
+        uri: 
+          Fn::Join:
+            - ""
+            - - "arn:aws:apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt: "SendOperationFunction.Arn"
+              - "/invocations"
+        responses:
+          default:
+            statusCode: "200"
+          ".*\\\"errorType\\\": \\\"BadInputError\\\".*":
+            statusCode: "400"
+            responseTemplates:
+              application/json: "#set($inputRoot = $input.path('$'))\n#set ($error\
+                \ = $util.parseJson($input.path('$.errorMessage')))\n{\"message\"\
+                : \"$error.errorMessage\"}"
+        requestTemplates:
+          application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"device\"\
+            \ : \"$input.params('device')\",\n  \"operation\" : \"$input.path('$.operation')\"\
+            ,\n  \"value\" : \"$inputRoot.value\"\n}"
+        passthroughBehavior: "when_no_templates"
+        contentHandling: "CONVERT_TO_TEXT"
+components:
+  schemas:
+    Empty:
+      title: "Empty Schema"
+      type: "object"
+    Error:
+      title: "Error Schema"
+      type: "object"
+      properties:
+        errorMessage:
+          type: "string"
+    OperationInvoke:
+      title: "OperationInvoke"
+      required:
+      - "operation"
+      - "value"
+      type: "object"
+      properties:
+        operation:
+          type: "string"
+        value:
+          type: "string"
+  securitySchemes:
+    api_key:
+      type: "apiKey"
+      name: "x-api-key"
+      in: "header"
+x-amazon-apigateway-request-validators:
+  Validate body:
+    validateRequestParameters: false
+    validateRequestBody: true

@@ -29,6 +29,28 @@ Resources:
           Action: sts:AssumeRole
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+  
+  CloudWatchRole:
+      Type: AWS::IAM::Role
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            Effect: Allow
+            Principal:
+              Service: apigateway.amazonaws.com
+            Action: 'sts:AssumeRole'
+        Path: /
+        ManagedPolicyArns:
+          - 'arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs'
+
+  CloudWatchAccount:
+    Type: AWS::ApiGateway::Account
+    Properties: 
+      CloudWatchRoleArn: !GetAtt CloudWatchRole.Arn
+
+  ApiAccessLogGroup:
+    Type: AWS::Logs::LogGroup
 
   PythonRestClientLambdaLayer:
     Type: AWS::Serverless::LayerVersion
@@ -36,6 +58,33 @@ Resources:
       ContentUri: ./src/layers/restClientLambdaLayer/restClientLambdaLayer.zip
       CompatibleRuntimes:
         - python3.9
+
+  ApiGateway:
+    Type: AWS::Serverless::Api
+    DependsOn: CloudWatchAccount
+    Properties:
+      DefinitionBody:
+        'Fn::Transform':
+          Name: 'AWS::Include'
+          Parameters:
+            Location: 'apigateway-openapi.yaml'
+      Mode: overwrite
+      StageName: prod
+      EndpointConfiguration: REGIONAL
+      Auth:
+        ApiKeyRequired: true
+        UsagePlan:
+          UsagePlanName: Basic
+          CreateUsagePlan: PER_API
+          Quota:
+            Limit: 10000
+            Period: DAY
+          Throttle:
+            BurstLimit: 250
+            RateLimit: 500
+      AccessLogSetting:
+        DestinationArn: !Sub ${ApiAccessLogGroup.Arn}
+        Format: "{ 'requestId':'$context.requestId', 'ip': '$context.identity.sourceIp', 'caller':'$context.identity.caller', 'user':'$context.identity.user','requestTime':'$context.requestTime', 'xrayTraceId':'$context.xrayTraceId', 'wafResponseCode':'$context.wafResponseCode', 'httpMethod':'$context.httpMethod','resourcePath':'$context.resourcePath', 'status':'$context.status','protocol':'$context.protocol', 'responseLength':'$context.responseLength' }"
 
   SendOperationFunction:
     Type: AWS::Serverless::Function
@@ -46,14 +95,8 @@ Resources:
       Layers:
         - !Ref PythonRestClientLambdaLayer
       Role: !GetAtt IncandescentLambdaBasicExecutionRole.Arn
-      Events:
-        SendOperation:
-          Type: Api
-          Properties:
-            Path: /devices/{device}/operations
-            Method: patch
       
 Outputs:
   ServerApi:
     Description: URL for the server API
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com"
+    Value: !Sub 'https://${ApiGateway}.execute-api.${AWS::Region}.amazonaws.com'
