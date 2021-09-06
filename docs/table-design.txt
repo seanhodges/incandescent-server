@@ -1,0 +1,9 @@
+
+UserHomeId      | String (Primary)
+DeviceId        | String (Sort)
+Username        | String
+Home            | String
+DeviceName      | String
+Switch          | Boolean
+DimLevel        | Integer
+
