@@ -3,10 +3,84 @@ info:
   title: "Incandescent-Server"
   version: "2021-08-23T20:24:26Z"
 paths:
-  /devices/{device}/operations:
+  /devices/{zone}/{room}/{device}/{featureset}:
+    get:
+      parameters:
+      - name: "zone"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "room"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "device"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "featureset"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        type: "aws"
+        httpMethod: "POST"
+        uri:
+          Fn::Join:
+            - ""
+            - - "arn:aws:apigateway:"
+              - Ref: AWS::Region
+              - ":dynamodb:action/Query"
+        credentials:
+          Fn::GetAtt: "ApiGatewayRole.Arn"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.path.zone: "method.request.path.zone"
+          integration.request.path.room: "method.request.path.room"
+          integration.request.path.device: "method.request.path.device"
+          integration.request.path.featureset: "method.request.path.featureset"
+        requestTemplates:
+          application/json: "#set($deviceRef = \"$input.params('zone')/$input.params('room')/$input.params('device')/$input.params('featureset')\"\
+            )\r\n{\r\n    \"TableName\": \"test-stack-DeviceTable-MGKXW4KKJRMR\",\r\
+            \n    \"KeyConditionExpression\": \"userId=:v_userId AND deviceRef=:v_deviceRef\"\
+            ,\r\n    \"ExpressionAttributeValues\": {\r\n        \":v_userId\": {\"\
+            S\":\"seanhodges\"}, \r\n        \":v_deviceRef\": {\"S\":\"$deviceRef\"\
+            }\r\n    }\r\n}"
+        passthroughBehavior: "when_no_templates"
+  /devices/{zone}/{room}/{device}/{featureset}/operations:
     patch:
       parameters:
+      - name: "zone"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "room"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
       - name: "device"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "featureset"
         in: "path"
         required: true
         schema:
@@ -53,10 +127,16 @@ paths:
               application/json: "#set($inputRoot = $input.path('$'))\n#set ($error\
                 \ = $util.parseJson($input.path('$.errorMessage')))\n{\"message\"\
                 : \"$error.errorMessage\"}"
+        requestParameters:
+          integration.request.path.room: "method.request.path.room"
+          integration.request.path.featureset: "method.request.path.featureset"
+          integration.request.path.device: "method.request.path.device"
+          integration.request.path.zone: "method.request.path.zone"
         requestTemplates:
-          application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"device\"\
-            \ : \"$input.params('device')\",\n  \"operation\" : \"$input.path('$.operation')\"\
-            ,\n  \"value\" : \"$inputRoot.value\"\n}"
+          application/json: "#set($deviceRef = \"$input.params('zone')/$input.params('room')/$input.params('device')/$input.params('featureset')\"\
+            )\n#set($inputRoot = $input.path('$'))\n{\n  \"deviceRef\" : \"$deviceRef\"\
+            ,\n  \"operation\" : \"$input.path('$.operation')\",\n  \"value\" : \"\
+            $inputRoot.value\"\n}"
         passthroughBehavior: "when_no_templates"
         contentHandling: "CONVERT_TO_TEXT"
 components:

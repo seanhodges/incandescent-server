@@ -29,8 +29,9 @@ Resources:
           Action: sts:AssumeRole
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+        - arn:aws:iam::aws:policy/AmazonDynamoDBReadOnlyAccess
   
-  CloudWatchRole:
+  ApiGatewayRole:
       Type: AWS::IAM::Role
       Properties:
         AssumeRolePolicyDocument:
@@ -42,12 +43,13 @@ Resources:
             Action: 'sts:AssumeRole'
         Path: /
         ManagedPolicyArns:
-          - 'arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs'
+          - arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs
+          - arn:aws:iam::aws:policy/AmazonDynamoDBReadOnlyAccess
 
   CloudWatchAccount:
     Type: AWS::ApiGateway::Account
     Properties: 
-      CloudWatchRoleArn: !GetAtt CloudWatchRole.Arn
+      CloudWatchRoleArn: !GetAtt ApiGatewayRole.Arn
 
   ApiAccessLogGroup:
     Type: AWS::Logs::LogGroup
@@ -108,8 +110,6 @@ Resources:
           AttributeType: S
         - AttributeName: deviceId
           AttributeType: S
-        - AttributeName: switchValue
-          AttributeType: B
       KeySchema:
         - AttributeName: userId
           KeyType: HASH
@@ -153,14 +153,6 @@ Resources:
               - featureSetId
               - deviceName
               - deviceRef
-          - IndexName: indexBySwitchValue
-            KeySchema: 
-            - AttributeName: userId
-              KeyType: HASH
-            - AttributeName: switchValue
-              KeyType: RANGE
-            Projection: 
-              ProjectionType: ALL
 
 Outputs:
   ServerApi:

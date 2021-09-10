@@ -54,9 +54,3 @@ featureSetName      | String
 featureSetId        | String
 deviceName          | String
 deviceRef           | String
-
-Secondary Index indexBySwitchValue (Local, ALL)
-------------------------------------------------
-
-userId              | String (Primary)
-switchValue         | Boolean (Sort)
