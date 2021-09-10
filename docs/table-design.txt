@@ -1,9 +1,62 @@
 
-UserHomeId      | String (Primary)
-DeviceId        | String (Sort)
-Username        | String
-Home            | String
-DeviceName      | String
-Switch          | Boolean
-DimLevel        | Integer
+Access patterns
+---------------
 
+Get rooms where user=X and home=Y
+Get featuresets where user=X and home=Y and room=Z
+Get features where device=X or featureset=Y
+Get all featuresets that have been turned on
+
+
+Davice table
+------------
+
+userId                  | String (Primary) "seanhodges"
+deviceRef               | String (Sort) "home/living-room/lights/bear-lamp"
+zoneName                | String
+zoneId                  | String
+roomName                | String
+roomId                  | String
+deviceName              | String
+deviceType              | String
+deviceId                | String
+featureSetName          | String
+featureSetId            | String
+switchValue             | Boolean
+switchId                | String
+dimLevelValue           | Integer
+dimLevelId              | String
+
+Secondary Index indexByFeatureSetId (Local, INCLUDE)
+----------------------------------------------------
+
+userId              | String (Primary)
+featureSetId        | String (Sort)
+zoneName            | String
+zoneId              | String
+roomName            | String
+roomId              | String
+featureSetName      | String
+deviceName          | String
+deviceId            | String
+deviceRef           | String
+
+Secondary Index indexByDeviceId (Local, INCLUDE)
+------------------------------------------------
+
+userId              | String (Primary)
+deviceId            | String (Sort)
+zoneName            | String
+zoneId              | String
+roomName            | String
+roomId              | String
+featureSetName      | String
+featureSetId        | String
+deviceName          | String
+deviceRef           | String
+
+Secondary Index indexBySwitchValue (Local, ALL)
+------------------------------------------------
+
+userId              | String (Primary)
+switchValue         | Boolean (Sort)

@@ -100,29 +100,68 @@ Resources:
     Type: AWS::DynamoDB::Table
     Properties: 
       AttributeDefinitions: 
-        - AttributeName: userHomeId
+        - AttributeName: userId # "user01"
+          AttributeType: S
+        - AttributeName: deviceRef # "home/living-room/lights/side-lamp"
+          AttributeType: S
+        - AttributeName: featureSetId
           AttributeType: S
         - AttributeName: deviceId
           AttributeType: S
-        - AttributeName: userName
-          AttributeType: S
-        - AttributeName: home
-          AttributeType: S
-        - AttributeName: deviceName
-          AttributeType: S
-        - AttributeName: switch
+        - AttributeName: switchValue
           AttributeType: B
-        - AttributeName: dimLevel
-          AttributeType: N
       KeySchema:
-        - AttributeName: userHomeId
+        - AttributeName: userId
           KeyType: HASH
-        - AttributeName: deviceId
+        - AttributeName: deviceRef
           KeyType: RANGE
       ProvisionedThroughput: 
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
-      
+      LocalSecondaryIndexes:
+          - IndexName: indexByFeatureSetId
+            KeySchema: 
+            - AttributeName: userId
+              KeyType: HASH
+            - AttributeName: featureSetId
+              KeyType: RANGE
+            Projection: 
+              ProjectionType: INCLUDE
+              NonKeyAttributes:
+              - zoneName
+              - zoneId
+              - roomName
+              - roomId
+              - featureSetName
+              - deviceName
+              - deviceId
+              - deviceRef
+          - IndexName: indexByDeviceId
+            KeySchema: 
+            - AttributeName: userId
+              KeyType: HASH
+            - AttributeName: deviceId
+              KeyType: RANGE
+            Projection: 
+              ProjectionType: INCLUDE
+              NonKeyAttributes:
+              - zoneName
+              - zoneId
+              - roomName
+              - roomId
+              - featureSetName
+              - featureSetId
+              - deviceName
+              - deviceRef
+          - IndexName: indexBySwitchValue
+            KeySchema: 
+            - AttributeName: userId
+              KeyType: HASH
+            - AttributeName: switchValue
+              KeyType: RANGE
+            Projection: 
+              ProjectionType: ALL
+
 Outputs:
   ServerApi:
     Description: URL for the server API
