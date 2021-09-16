@@ -1,0 +1,42 @@
+{
+    "zoneData": {
+        "groupId": "12345",
+        "name": "Home"
+    },
+    "roomData": {
+        "groupId": "12346",
+        "name": "Games Room"
+    },
+    "deviceData": {
+        "deviceId": "5b8aa9b4d36c330fd5b4e100-7-3157332334+1",
+        "name": "Bear lamp",
+        "productCode": "LW320",
+        "product": "LW320",
+        "device": "socket",
+        "desc": "Plug-In Socket",
+        "type": "lwrfOneWay_v1",
+        "cat": "Power",
+        "gen": 1
+    },
+    "featureSetData": {
+        "featureSetId": "5b8aa9b4d36c330fd5b4e100-5bb4bd41d9f2a77b77b2a6f8",
+        "name": "Bear lamp",
+        "features": [
+            {
+                "featureId": "5b8aa9b4d36c330fd5b4e100-56-3157332334+1",
+                "type": "switch",
+                "writable": true
+            },
+            {
+                "featureId": "5b8aa9b4d36c330fd5b4e100-57-3157332334+1",
+                "type": "protection",
+                "writable": true
+            },
+            {
+                "featureId": "5b8aa9b4d36c330fd5b4e100-158-3157332334+1",
+                "type": "identify",
+                "writable": true
+            }
+        ]
+    }
+}

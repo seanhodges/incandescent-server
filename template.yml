@@ -26,10 +26,25 @@ Resources:
           Effect: Allow
           Principal:
             Service: lambda.amazonaws.com
-          Action: sts:AssumeRole
+          Action: 
+            - sts:AssumeRole
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
-        - arn:aws:iam::aws:policy/AmazonDynamoDBReadOnlyAccess
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole
+      Policies:
+        - PolicyName: IncandescentLambdaPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                - dynamodb:BatchGetItem
+                - dynamodb:GetItem
+                - dynamodb:Query
+                - dynamodb:BatchWriteItem
+                - dynamodb:PutItem
+                - dynamodb:UpdateItem
+                Resource: '*'
   
   ApiGatewayRole:
       Type: AWS::IAM::Role
@@ -40,11 +55,22 @@ Resources:
             Effect: Allow
             Principal:
               Service: apigateway.amazonaws.com
-            Action: 'sts:AssumeRole'
+            Action: 
+              - sts:AssumeRole
         Path: /
         ManagedPolicyArns:
           - arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs
-          - arn:aws:iam::aws:policy/AmazonDynamoDBReadOnlyAccess
+        Policies:
+          - PolicyName: IncandescentApiGatewayPolicy
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Effect: Allow
+                  Action:
+                    - dynamodb:BatchGetItem
+                    - dynamodb:GetItem
+                    - dynamodb:Query
+                  Resource: '*'
 
   CloudWatchAccount:
     Type: AWS::ApiGateway::Account
@@ -97,6 +123,33 @@ Resources:
       Layers:
         - !Ref PythonRestClientLambdaLayer
       Role: !GetAtt IncandescentLambdaBasicExecutionRole.Arn
+
+  UpsertDeviceFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./src/handlers/upsertDevice
+      Handler: upsert-device.lambda_handler
+      Runtime: python3.9
+      Role: !GetAtt IncandescentLambdaBasicExecutionRole.Arn
+      Events:
+        SQSEvent:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt DeviceReceivedQueue.Arn
+            BatchSize: 10
+            MaximumBatchingWindowInSeconds: 10
+
+  DeviceReceivedQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      MessageRetentionPeriod: 345600 # 4 days
+      VisibilityTimeout: 10 # 10 seconds
+      RedrivePolicy: 
+        deadLetterTargetArn: !GetAtt DeviceNotProcessedQueue.Arn
+        maxReceiveCount: 5
+  
+  DeviceNotProcessedQueue:
+    Type: AWS::SQS::Queue
 
   DeviceTable:
     Type: AWS::DynamoDB::Table

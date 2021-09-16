@@ -26,7 +26,6 @@ def lambda_handler(event, context):
     
 def toggle_switch(device_ref, operation, value):
     feature_id = find_feature(device_ref, operation)
-    # '5b8aa9b4d36c330fd5b4e100-320-3157332334%2B1' # TODO: lookup the feature from the device and operation
     logger.info(f'Setting {feature_id} {operation} to {value}')
         
     if feature_id == None or len(feature_id) < 3:
