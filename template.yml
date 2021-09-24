@@ -126,6 +126,11 @@ Resources:
       Layers:
         - !Ref PythonRestClientLambdaLayer
       Role: !GetAtt IncandescentLambdaBasicExecutionRole.Arn
+      Events:
+        ScheduledEvent:
+          Type: Schedule
+          Properties:
+            Schedule: 'rate(10 minutes)'
 
   SendOperationFunction:
     Type: AWS::Serverless::Function

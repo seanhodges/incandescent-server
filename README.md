@@ -17,11 +17,13 @@ aws dynamodb batch-write-item --request-items file://docs/device-db-test-data.js
 }
 
 Things to fix:
-- We're not upserting devices, only inserting new ones
-- There's no scheduled processor adding new devices
 - There's no housekeeping removing old devices
 - We should put new operations into an SNS queue
-- The dynamodb table name is hardcoded in several places
+- The dynamodb table name and SQS queue are hardcoded in several places
 - The LW auth token is not being refreshed automatically
 - A trust policy is missing somewhere when rebuilding the whole stack, have to add by hand
-- The IAM service roles probably need a bit of cleaning up
+
+
+Step functions:
+1. Get structure
+2. 
