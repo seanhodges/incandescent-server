@@ -30,7 +30,6 @@ Resources:
             - sts:AssumeRole
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
-        - arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole
       Policies:
         - PolicyName: IncandescentLambdaPolicy
           PolicyDocument:
@@ -44,6 +43,10 @@ Resources:
                 - dynamodb:BatchWriteItem
                 - dynamodb:PutItem
                 - dynamodb:UpdateItem
+                - sqs:GetQueueAttributes
+                - sqs:GetQueueUrl
+                - sqs:SendMessage
+                - sqs:ReceiveMessage
                 Resource: '*'
   
   ApiGatewayRole:
@@ -113,6 +116,16 @@ Resources:
       AccessLogSetting:
         DestinationArn: !Sub ${ApiAccessLogGroup.Arn}
         Format: "{ 'requestId':'$context.requestId', 'ip': '$context.identity.sourceIp', 'caller':'$context.identity.caller', 'user':'$context.identity.user','requestTime':'$context.requestTime', 'xrayTraceId':'$context.xrayTraceId', 'wafResponseCode':'$context.wafResponseCode', 'httpMethod':'$context.httpMethod','resourcePath':'$context.resourcePath', 'status':'$context.status','protocol':'$context.protocol', 'responseLength':'$context.responseLength' }"
+
+  ProcessDevicesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./src/handlers/processDevices
+      Handler: process-devices.lambda_handler
+      Runtime: python3.9
+      Layers:
+        - !Ref PythonRestClientLambdaLayer
+      Role: !GetAtt IncandescentLambdaBasicExecutionRole.Arn
 
   SendOperationFunction:
     Type: AWS::Serverless::Function

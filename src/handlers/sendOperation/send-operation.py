@@ -26,13 +26,14 @@ def lambda_handler(event, context):
     
 def toggle_switch(device_ref, operation, value):
     feature_id = find_feature(device_ref, operation)
+    # '5b8aa9b4d36c330fd5b4e100-320-3157332334%2B1' # TODO: lookup the feature from the device and operation
     logger.info(f'Setting {feature_id} {operation} to {value}')
         
     if feature_id == None or len(feature_id) < 3:
         raise BadInputError(f'Invalid feature id: {feature_id}')
             
     headers = {
-        'authorization': 'bearer eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJhZTIxOTU1N2M0ZjI0NmYyZWQ4YSIsImlzcyI6Imh0dHBzOi8vYXV0aC5saWdodHdhdmVyZi5jb20iLCJzdWIiOiJjNTJiNDA4MS00MTA5LTQ4MTctOTE1NS1jNmY1YjBmMjdlYWQiLCJhdWQiOiI0OWQ2N2NmZC00YzVjLTQ5MDQtYjcyNi04NWFjMzRhYmY2ODAiLCJleHAiOjE2MzEzMzg4NzQsImlhdCI6MTYzMTMwMjg3NCwic2NvcGUiOiJsd3B1YmxpYyJ9.Yo_yeoxYB9bULfmzPFMhWPrBm13yCl_YEm5jTj5SBd2-pUiDV4zSMEOLis_voWjdLJaI1DIxlIJMN2nreB3x-VNRH9TOgnuqSdAScWUwBdXf9W65kiZcGl78KhFvy9Q7xDSDeV8slbtZKFOVsuK9w5SFcciUd3tQFWc7l3couqbDSP81hhT6EDh3Uvb3cCxVqJA0h5F63y_H27J-gLJ9obcXzLQWRJCZTLp4WRX-LGJi4MV1zmNDhhbBx-Vsd_g8f_YQNnMnrzw0394IoNX9DWuEMbP_-9aHuQYDnd44WQGNm_TWaQlBL2P4M-6sbekc3iW5f26npRxZBzlv_EgYE9EyRzTBQdKMdjQj-V9HvpLv9DRYa3eQBtPxZSLbO3pOnB5iHNO7fK8D71f-NPH_jhE9dPzcgz32HzQlWeCfr4D1YCIRM3Z4BlDE5xX0Y8yA5_2pqx7knMIE8DDd-oNjiYOIoUpVq5Fga443yMRzWoKgwLeOIwCz6RxQ_AS46W9AGDLtXPyM9lcxXT6y2iK1qW1rh1JYZ-djtP3BuRQsl3oEogywEzpiiCA03325u3isSsb5UxTSSbkxd_FN9KHDBVjn-lphiNMQqJTEPevZwJa3QIuqD22d8CViX9pR8TXiC0agQyaY6aRZZG-UqME0HfvYuNQJqsIvtzwhsDlWnW8',
+        'authorization': 'bearer eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIxYTRhMzVkNTE4NTFiYmY4MTU3ZSIsImlzcyI6Imh0dHBzOi8vYXV0aC5saWdodHdhdmVyZi5jb20iLCJzdWIiOiJjNTJiNDA4MS00MTA5LTQ4MTctOTE1NS1jNmY1YjBmMjdlYWQiLCJhdWQiOiI0OWQ2N2NmZC00YzVjLTQ5MDQtYjcyNi04NWFjMzRhYmY2ODAiLCJleHAiOjE2MzI1NTIyNTUsImlhdCI6MTYzMjUxNjI1NSwic2NvcGUiOiJsd3B1YmxpYyJ9.qE1XgvaAM8LhFTtGWi-WXtO4COgoWwort7nRa1TQsyyFNFc2fOi8-bXcZV67_oKonLAmu0zTZYHoB-FRmcnpbtja25ightujKpJ_-ANda71Gq1x8vG7Vmbuvd_sjpAHJLLaY1J8uidDZqd6kdQUU-Zj1nfBWTuOD2WySyMxt2xTu6gU3eeKFRgugJNlV291Nyd4EnQnsFDoXSl_h46Ax6nmn_Kvc4OQOANyyBgNeMAzjk08-hNnkAmAAqSPqjkCGROtOLlyVrluvh9AazUhZYH9bGAtWdEtcsAv6Wc2tc5jImwwbKitnUO_l3S24mkK-WBKUXp8q3OrTB5CXH8abUJ3n6XxlOhtBX0iEPule4uuEB5GPhDF06LqglohkToYynfAo915aL93GUWAjXuFEJugHhEdBmOUrAamxjaS-WEtiOdINzDO6ddGpIqdAs8XmJYI6Op-3sfuGWt2xBywIhu_xvIDhDMBC3Z4P1HD0T3upf3vnMAiTZ7vDCAMTKMSZKj3jnbO73tj2IRSMkrU2MuI0HnPwBXVBfL1a4CpmGamyDHMHokX8VkHRceAZCol3eCuz5ArKL-2BNQAbFPBP7Yy4UnJAXR5gg1Fqg7JbHuLB5A21cr63OG7wg-SwG8O8kfFWEJ0pfIHz-vrX3IJcOuvwh3FkIl8JF0M0elJRFqE',
         'content-type': 'application/json'
     }
     r = requests.post(f'https://publicapi.lightwaverf.com/v1/feature/{feature_id}', json={'value': value}, headers=headers)
