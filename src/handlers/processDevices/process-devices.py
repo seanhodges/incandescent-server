@@ -2,22 +2,26 @@ import json
 import logging
 import requests
 import boto3
+import os
 from botocore.exceptions import ClientError
+
+sqs = boto3.resource('sqs')
+secrets_manager = boto3.client('secretsmanager', endpoint_url=os.environ['SecretsManagerEndpoint'])
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
-
-sqs = boto3.resource('sqs')
 
 def lambda_handler(event, context):
     process_devices()
     
 def process_devices():
-    # Load latest structure, zones and rooms 
-    home_id = get_top_level_structure_id()
-    structure = get_structure_for_id(home_id)
-    room_groups = get_by_group_type('rooms')
-    zone_groups = get_by_group_type('zones')
+    access_token = secrets_manager.get_secret_value(SecretId=os.environ['AccessTokenArn']).get('SecretString')
+
+    # Load latest structure, zones and rooms
+    home_id = get_top_level_structure_id(access_token)
+    structure = get_structure_for_id(access_token, home_id)
+    room_groups = get_by_group_type(access_token, 'rooms')
+    zone_groups = get_by_group_type(access_token, 'zones')
     # Parse each device in the structure
     for device in structure['devices']:
         # Process each feature set in the device
@@ -29,11 +33,11 @@ def process_devices():
             # Publish SQS message with device, room, and zone data
             publish_to_sqs(device, feature_set, room_group, zone_group)
 
-def get_top_level_structure_id():
+def get_top_level_structure_id(access_token):
     logger.info(f'Getting top level structure id')
 
     headers = {
-        'authorization': 'bearer eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIxYTRhMzVkNTE4NTFiYmY4MTU3ZSIsImlzcyI6Imh0dHBzOi8vYXV0aC5saWdodHdhdmVyZi5jb20iLCJzdWIiOiJjNTJiNDA4MS00MTA5LTQ4MTctOTE1NS1jNmY1YjBmMjdlYWQiLCJhdWQiOiI0OWQ2N2NmZC00YzVjLTQ5MDQtYjcyNi04NWFjMzRhYmY2ODAiLCJleHAiOjE2MzI1NTIyNTUsImlhdCI6MTYzMjUxNjI1NSwic2NvcGUiOiJsd3B1YmxpYyJ9.qE1XgvaAM8LhFTtGWi-WXtO4COgoWwort7nRa1TQsyyFNFc2fOi8-bXcZV67_oKonLAmu0zTZYHoB-FRmcnpbtja25ightujKpJ_-ANda71Gq1x8vG7Vmbuvd_sjpAHJLLaY1J8uidDZqd6kdQUU-Zj1nfBWTuOD2WySyMxt2xTu6gU3eeKFRgugJNlV291Nyd4EnQnsFDoXSl_h46Ax6nmn_Kvc4OQOANyyBgNeMAzjk08-hNnkAmAAqSPqjkCGROtOLlyVrluvh9AazUhZYH9bGAtWdEtcsAv6Wc2tc5jImwwbKitnUO_l3S24mkK-WBKUXp8q3OrTB5CXH8abUJ3n6XxlOhtBX0iEPule4uuEB5GPhDF06LqglohkToYynfAo915aL93GUWAjXuFEJugHhEdBmOUrAamxjaS-WEtiOdINzDO6ddGpIqdAs8XmJYI6Op-3sfuGWt2xBywIhu_xvIDhDMBC3Z4P1HD0T3upf3vnMAiTZ7vDCAMTKMSZKj3jnbO73tj2IRSMkrU2MuI0HnPwBXVBfL1a4CpmGamyDHMHokX8VkHRceAZCol3eCuz5ArKL-2BNQAbFPBP7Yy4UnJAXR5gg1Fqg7JbHuLB5A21cr63OG7wg-SwG8O8kfFWEJ0pfIHz-vrX3IJcOuvwh3FkIl8JF0M0elJRFqE',
+        'authorization': 'bearer %s' % access_token,
         'content-type': 'application/json'
     }
     r = requests.get(f'https://publicapi.lightwaverf.com/v1/structures', headers=headers)
@@ -46,11 +50,11 @@ def get_top_level_structure_id():
         raise Exception(result_body.get('message') if 'message' in result_body else '')
     return result_body['structures'][0] # Assuming one home for now
 
-def get_structure_for_id(structure_id):
+def get_structure_for_id(access_token, structure_id):
     logger.info(f'Getting structure for {structure_id}')
 
     headers = {
-        'authorization': 'bearer eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIxYTRhMzVkNTE4NTFiYmY4MTU3ZSIsImlzcyI6Imh0dHBzOi8vYXV0aC5saWdodHdhdmVyZi5jb20iLCJzdWIiOiJjNTJiNDA4MS00MTA5LTQ4MTctOTE1NS1jNmY1YjBmMjdlYWQiLCJhdWQiOiI0OWQ2N2NmZC00YzVjLTQ5MDQtYjcyNi04NWFjMzRhYmY2ODAiLCJleHAiOjE2MzI1NTIyNTUsImlhdCI6MTYzMjUxNjI1NSwic2NvcGUiOiJsd3B1YmxpYyJ9.qE1XgvaAM8LhFTtGWi-WXtO4COgoWwort7nRa1TQsyyFNFc2fOi8-bXcZV67_oKonLAmu0zTZYHoB-FRmcnpbtja25ightujKpJ_-ANda71Gq1x8vG7Vmbuvd_sjpAHJLLaY1J8uidDZqd6kdQUU-Zj1nfBWTuOD2WySyMxt2xTu6gU3eeKFRgugJNlV291Nyd4EnQnsFDoXSl_h46Ax6nmn_Kvc4OQOANyyBgNeMAzjk08-hNnkAmAAqSPqjkCGROtOLlyVrluvh9AazUhZYH9bGAtWdEtcsAv6Wc2tc5jImwwbKitnUO_l3S24mkK-WBKUXp8q3OrTB5CXH8abUJ3n6XxlOhtBX0iEPule4uuEB5GPhDF06LqglohkToYynfAo915aL93GUWAjXuFEJugHhEdBmOUrAamxjaS-WEtiOdINzDO6ddGpIqdAs8XmJYI6Op-3sfuGWt2xBywIhu_xvIDhDMBC3Z4P1HD0T3upf3vnMAiTZ7vDCAMTKMSZKj3jnbO73tj2IRSMkrU2MuI0HnPwBXVBfL1a4CpmGamyDHMHokX8VkHRceAZCol3eCuz5ArKL-2BNQAbFPBP7Yy4UnJAXR5gg1Fqg7JbHuLB5A21cr63OG7wg-SwG8O8kfFWEJ0pfIHz-vrX3IJcOuvwh3FkIl8JF0M0elJRFqE',
+        'authorization': 'bearer %s' % access_token,
         'content-type': 'application/json'
     }
     r = requests.get(f'https://publicapi.lightwaverf.com/v1/structure/{structure_id}', headers=headers)
@@ -63,11 +67,11 @@ def get_structure_for_id(structure_id):
         raise Exception(result_body.get('message') if 'message' in result_body else '')
     return result_body
 
-def get_by_group_type(group_type):
+def get_by_group_type(access_token, group_type):
     logger.info(f'Getting {group_type} groups')
 
     headers = {
-        'authorization': 'bearer eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIxYTRhMzVkNTE4NTFiYmY4MTU3ZSIsImlzcyI6Imh0dHBzOi8vYXV0aC5saWdodHdhdmVyZi5jb20iLCJzdWIiOiJjNTJiNDA4MS00MTA5LTQ4MTctOTE1NS1jNmY1YjBmMjdlYWQiLCJhdWQiOiI0OWQ2N2NmZC00YzVjLTQ5MDQtYjcyNi04NWFjMzRhYmY2ODAiLCJleHAiOjE2MzI1NTIyNTUsImlhdCI6MTYzMjUxNjI1NSwic2NvcGUiOiJsd3B1YmxpYyJ9.qE1XgvaAM8LhFTtGWi-WXtO4COgoWwort7nRa1TQsyyFNFc2fOi8-bXcZV67_oKonLAmu0zTZYHoB-FRmcnpbtja25ightujKpJ_-ANda71Gq1x8vG7Vmbuvd_sjpAHJLLaY1J8uidDZqd6kdQUU-Zj1nfBWTuOD2WySyMxt2xTu6gU3eeKFRgugJNlV291Nyd4EnQnsFDoXSl_h46Ax6nmn_Kvc4OQOANyyBgNeMAzjk08-hNnkAmAAqSPqjkCGROtOLlyVrluvh9AazUhZYH9bGAtWdEtcsAv6Wc2tc5jImwwbKitnUO_l3S24mkK-WBKUXp8q3OrTB5CXH8abUJ3n6XxlOhtBX0iEPule4uuEB5GPhDF06LqglohkToYynfAo915aL93GUWAjXuFEJugHhEdBmOUrAamxjaS-WEtiOdINzDO6ddGpIqdAs8XmJYI6Op-3sfuGWt2xBywIhu_xvIDhDMBC3Z4P1HD0T3upf3vnMAiTZ7vDCAMTKMSZKj3jnbO73tj2IRSMkrU2MuI0HnPwBXVBfL1a4CpmGamyDHMHokX8VkHRceAZCol3eCuz5ArKL-2BNQAbFPBP7Yy4UnJAXR5gg1Fqg7JbHuLB5A21cr63OG7wg-SwG8O8kfFWEJ0pfIHz-vrX3IJcOuvwh3FkIl8JF0M0elJRFqE',
+        'authorization': 'bearer %s' % access_token,
         'content-type': 'application/json'
     }
     r = requests.get(f'https://publicapi.lightwaverf.com/v1/{group_type}', headers=headers)
@@ -91,6 +95,7 @@ def get_sqs_queue(name):
         return queue
 
 def publish_to_sqs(device, feature_set, room_group, zone_group):
+    # TODO: Fetch the current queue name
     queue = get_sqs_queue('test-stack-DeviceReceivedQueue-Q5E7XGQ2YQ9R')
     try:
         message = {

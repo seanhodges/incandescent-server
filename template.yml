@@ -11,6 +11,10 @@ Transform: AWS::Serverless-2016-10-31
 Globals:
   Function:
     PermissionsBoundary: !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/${AppId}-${AWS::Region}-PermissionsBoundary'
+    Environment:
+      Variables:
+        SecretsManagerEndpoint: !Sub 'https://secretsmanager.${AWS::Region}.amazonaws.com'
+        AccessTokenArn: !Ref LightwaveAccessToken
 
 Parameters:
   AppId:
@@ -33,7 +37,7 @@ Resources:
       Policies:
         - PolicyName: IncandescentLambdaPolicy
           PolicyDocument:
-            Version: "2012-10-17"
+            Version: 2012-10-17
             Statement:
               - Effect: Allow
                 Action:
@@ -43,6 +47,7 @@ Resources:
                 - dynamodb:BatchWriteItem
                 - dynamodb:PutItem
                 - dynamodb:UpdateItem
+                - secretsmanager:GetSecretValue
                 - sqs:GetQueueAttributes
                 - sqs:GetQueueUrl
                 - sqs:SendMessage
@@ -53,7 +58,7 @@ Resources:
       Type: AWS::IAM::Role
       Properties:
         AssumeRolePolicyDocument:
-          Version: '2012-10-17'
+          Version: 2012-10-17
           Statement:
             Effect: Allow
             Principal:
@@ -66,7 +71,7 @@ Resources:
         Policies:
           - PolicyName: IncandescentApiGatewayPolicy
             PolicyDocument:
-              Version: "2012-10-17"
+              Version: 2012-10-17
               Statement:
                 - Effect: Allow
                   Action:
@@ -224,6 +229,81 @@ Resources:
               - featureSetId
               - deviceName
               - deviceRef
+
+  'Fn::Transform':
+    Name: AWS::Include
+    Description: Local-defined secrets
+    Parameters:
+      Location: 'secrets.yml'
+
+  RefreshTokenRole:
+    Type: AWS::IAM::Role
+    Properties:
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: RefreshTokenPolicy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - secretsmanager:DescribeSecret
+                  - secretsmanager:GetSecretValue
+                  - secretsmanager:PutSecretValue
+                  - secretsmanager:UpdateSecretVersionStage
+                Resource: '*'
+                # Condition:
+                #   StringEquals:
+                #     secretsmanager:resource/AllowRotationLambdaArn: 'arn:aws:lambda:${AWS:Region}:${AWS:AccountId}:function:${AWS::StackName}-RefreshTokenFunction'
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action: sts:AssumeRole
+  
+  RefreshTokenInvokePermission:
+    Type: AWS::Lambda::Permission
+    DependsOn: RefreshTokenFunction
+    Properties:
+      FunctionName: !GetAtt RefreshTokenFunction.Arn
+      Action: lambda:InvokeFunction
+      Principal: 'secretsmanager.amazonaws.com'
+
+  RefreshTokenFunction:
+    # Function named so it can be referenced in RefreshTokenPolicy
+    Name: ${AWS::StackName}-RefreshTokenFunction
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./src/handlers/refreshToken
+      Handler: refresh-token.lambda_handler
+      Runtime: python3.9
+      Layers:
+        - !Ref PythonRestClientLambdaLayer
+      Role: !GetAtt RefreshTokenRole.Arn
+      Environment:
+        Variables:
+          ClientAuthTokenArn: !Ref LightwaveClientAuthToken
+          RefreshTokenArn: !Ref LightwaveRefreshToken
+
+  LightwaveAccessToken:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: Leave blank. This is set by the token refresh function
+      SecretString: <UNSET>
+
+  LightwaveTokenRotationSchedule:
+    Type: AWS::SecretsManager::RotationSchedule
+    Properties:
+      SecretId: !Ref LightwaveAccessToken
+      RotationLambdaARN: !GetAtt RefreshTokenFunction.Arn
+      RotationRules:
+        # TODO: Should be 10h but SM doesn't support less than 1d. Should make a custom trigger.
+        # See https://forums.aws.amazon.com/thread.jspa?threadID=304917
+        AutomaticallyAfterDays: 1
 
 Outputs:
   ServerApi:

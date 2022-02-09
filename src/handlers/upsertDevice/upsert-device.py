@@ -3,6 +3,8 @@ import logging
 import boto3
 from boto3.dynamodb.conditions import Key
 
+dynamodb = boto3.resource('dynamodb')
+
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
@@ -22,8 +24,12 @@ def upsert_device(zone_data, room_data, device_data, feature_set_data):
     room_id, room_name = get_room_attrs(room_data)
     device_id, device_name, device_type = get_device_attrs(device_data)
     feature_set_id, feature_set_name = get_feature_set_attrs(feature_set_data)
+    identify_id = get_feature_attrs(feature_set_data, 'identify')
+    protection_id = get_feature_attrs(feature_set_data, 'protection')
+    switch_id = get_feature_attrs(feature_set_data, 'switch')
+    dim_level_id = get_feature_attrs(feature_set_data, 'dimLevel')
 
-    dynamodb = boto3.resource('dynamodb')
+    # TODO: Fetch the current table name
     table = dynamodb.Table('test-stack-DeviceTable-MGKXW4KKJRMR')
     table.put_item(
        Item={
@@ -38,6 +44,10 @@ def upsert_device(zone_data, room_data, device_data, feature_set_data):
             'deviceId': device_id,
             'featureSetName': feature_set_name,
             'featureSetId': feature_set_id,
+            'identifyId': identify_id,
+            'protectionId': protection_id,
+            'switchId': switch_id,
+            'dimLevel': dim_level_id,
         }
     )
 
@@ -52,6 +62,13 @@ def get_device_attrs(data):
 
 def get_feature_set_attrs(data):
     return data['featureSetId'], data['name']
+
+def get_feature_attrs(data, feature_type):
+    search = filter(lambda feature: (feature['type'] == feature_type), data['features'])
+    match = next(search, None)
+    if match == None:
+        return None
+    return match['featureId']
 
 def generate_device_ref(zone_name, room_name, device_name, feature_set_name):
     normalise = lambda name: '-'.join(name.split()).lower()
