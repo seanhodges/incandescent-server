@@ -47,7 +47,7 @@ def upsert_device(zone_data, room_data, device_data, feature_set_data):
             'identifyId': identify_id,
             'protectionId': protection_id,
             'switchId': switch_id,
-            'dimLevel': dim_level_id,
+            'dimLevelId': dim_level_id,
         }
     )
 

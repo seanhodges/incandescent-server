@@ -1,29 +1,28 @@
+# Incandescent Server
 
-sam package -t template.yml --s3-bucket incandescent-server-deploy-bucket --output-template-file packaged-template.yaml
-sam deploy --template-file packaged-template.yaml --stack-name test-stack
-aws dynamodb list-tables
-aws dynamodb batch-write-item --request-items file://docs/device-db-test-data.json (remember to rename table first)
+Serverless application for headless home automation of various devices
+
+Currently supports the following vendors:
+
+- LightwaveRF Smart series (switches and dimmers) https://lightwaverf.com/
 
 
+## Build and deploy
 
-#set($deviceRef = "home/games-room/computer/" + $input.param('featureset'))
-{
-    "TableName": "test-stack-DeviceTable-MGKXW4KKJRMR",
-    "KeyConditionExpression": "userId=:v_userId AND deviceRef=:v_deviceRef",
-    "ExpressionAttributeValues": {
-        ":v_userId": {"S":"seanhodges"}, 
-        ":v_deviceRef": {"S":"$deviceRef"}
-    }
-}
+    sam build
+    sam deploy --stack-name <name for the stack>
 
-Things to fix:
+Deploy and watch for local changes:
+
+    sam sync --stack-name <name for the stack> --watch
+
+
+## Things to do/fix
+
 - There's no housekeeping removing old devices
-- We should put new operations into an SNS queue
 - The dynamodb table name and SQS queue are hardcoded in several places
-- The LW auth token is not being refreshed automatically
-- A trust policy is missing somewhere when rebuilding the whole stack, have to add by hand
-
-
-Step functions:
-1. Get structure
-2. 
+- Test creating a new stack from scratch
+- Create a test->prod delivery pipeline https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/continuous-delivery-codepipeline-basic-walkthrough.html
+- Lambda tests https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-using-automated-tests.html
+- Evaluate IDEs (Code)
+- Separate secrets per account with runtime management, and more frequent secret rotation

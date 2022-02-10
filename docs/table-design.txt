@@ -22,9 +22,7 @@ deviceType              | String
 deviceId                | String
 featureSetName          | String
 featureSetId            | String
-switchValue             | Boolean
 switchId                | String
-dimLevelValue           | Integer
 dimLevelId              | String
 
 Secondary Index indexByFeatureSetId (Local, INCLUDE)

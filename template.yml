@@ -91,9 +91,11 @@ Resources:
   PythonRestClientLambdaLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
-      ContentUri: ./src/layers/restClientLambdaLayer/restClientLambdaLayer.zip
+      ContentUri: ./src/layers/restClientLambdaLayer
       CompatibleRuntimes:
         - python3.9
+    Metadata:
+      BuildMethod: python3.9
 
   ApiGateway:
     Type: AWS::Serverless::Api

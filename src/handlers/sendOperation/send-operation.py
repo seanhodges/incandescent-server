@@ -33,9 +33,6 @@ def lambda_handler(event, context):
 def toggle_switch(access_token, device_ref, operation, value):
     feature_id = find_feature(device_ref, operation)
     logger.info(f'Setting {feature_id} {operation} to {value}')
-        
-    if feature_id == None or len(feature_id) < 3:
-        raise BadInputError(f'No matching device for: {device_ref}')
             
     headers = {
         'authorization': 'bearer %s' % access_token,
@@ -49,7 +46,7 @@ def toggle_switch(access_token, device_ref, operation, value):
     elif r.status_code >= 401:
         logger.error(result_body)
         raise Exception(result_body.get('message') if 'message' in result_body else '')
-    return result_body
+    return { 'device_ref': device_ref, 'operation': operation, 'value': value }
 
 def find_feature(device_ref, operation):
     # TODO: Fetch the current table name
@@ -59,6 +56,8 @@ def find_feature(device_ref, operation):
     )
     
     if len(response['Items']) == 0:
-        return None 
+        raise BadInputError(f'No matching device for: \'{device_ref}\'')
+    elif not operation + 'Id' in response['Items'][0]:
+        raise BadInputError(f'No matching operation for: \'{operation}\' in \'{device_ref}\'')
     
     return response['Items'][0][operation + 'Id']
