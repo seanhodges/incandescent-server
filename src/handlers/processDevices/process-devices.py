@@ -96,7 +96,7 @@ def get_sqs_queue(name):
 
 def publish_to_sqs(device, feature_set, room_group, zone_group):
     # TODO: Fetch the current queue name
-    queue = get_sqs_queue('test-stack-DeviceReceivedQueue-Q5E7XGQ2YQ9R')
+    queue = get_sqs_queue(os.environ['DeviceReceivedQueueName'])
     try:
         message = {
             'zoneData': zone_group,

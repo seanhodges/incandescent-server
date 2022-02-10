@@ -20,9 +20,8 @@ Deploy and watch for local changes:
 ## Things to do/fix
 
 - There's no housekeeping removing old devices
-- The dynamodb table name and SQS queue are hardcoded in several places
 - Test creating a new stack from scratch
 - Create a test->prod delivery pipeline https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/continuous-delivery-codepipeline-basic-walkthrough.html
 - Lambda tests https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-using-automated-tests.html
-- Evaluate IDEs (Code)
+- Evaluate IDEs ( VSCode https://github.com/aws/aws-toolkit-vscode)
 - Separate secrets per account with runtime management, and more frequent secret rotation

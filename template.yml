@@ -13,6 +13,8 @@ Globals:
     PermissionsBoundary: !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/${AppId}-${AWS::Region}-PermissionsBoundary'
     Environment:
       Variables:
+        DeviceTableName: !Select [1, !Split ['/', !GetAtt DeviceTable.Arn]] 
+        DeviceReceivedQueueName: !GetAtt DeviceReceivedQueue.QueueName
         SecretsManagerEndpoint: !Sub 'https://secretsmanager.${AWS::Region}.amazonaws.com'
         AccessTokenArn: !Ref LightwaveAccessToken
 

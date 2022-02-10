@@ -30,7 +30,7 @@ def upsert_device(zone_data, room_data, device_data, feature_set_data):
     dim_level_id = get_feature_attrs(feature_set_data, 'dimLevel')
 
     # TODO: Fetch the current table name
-    table = dynamodb.Table('test-stack-DeviceTable-MGKXW4KKJRMR')
+    table = dynamodb.Table(os.environ['DeviceTableName'])
     table.put_item(
        Item={
             'userId': user_id,

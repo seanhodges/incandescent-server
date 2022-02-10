@@ -50,7 +50,7 @@ def toggle_switch(access_token, device_ref, operation, value):
 
 def find_feature(device_ref, operation):
     # TODO: Fetch the current table name
-    table = dynamodb.Table('test-stack-DeviceTable-MGKXW4KKJRMR')
+    table = dynamodb.Table(os.environ['DeviceTableName'])
     response = table.query(
         KeyConditionExpression = Key('userId').eq('seanhodges') & Key('deviceRef').eq(device_ref)
     )
