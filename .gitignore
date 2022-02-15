@@ -1,4 +1,4 @@
 .aws-sam
-packaged-template.yaml
+.vscode
 secrets.yml
 src/layers/restClientLambdaLayer/python/

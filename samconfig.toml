@@ -8,4 +8,3 @@ s3_prefix = "test-stack"
 region = "eu-west-2"
 confirm_changeset = true
 capabilities = "CAPABILITY_IAM"
-parameter_overrides = "AppId=\"test-stack\""

@@ -10,17 +10,13 @@ Transform: AWS::Serverless-2016-10-31
 # https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
-    PermissionsBoundary: !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/${AppId}-${AWS::Region}-PermissionsBoundary'
+    PermissionsBoundary: !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/${AWS::StackName}-${AWS::Region}-PermissionsBoundary'
     Environment:
       Variables:
         DeviceTableName: !Select [1, !Split ['/', !GetAtt DeviceTable.Arn]] 
         DeviceReceivedQueueName: !GetAtt DeviceReceivedQueue.QueueName
         SecretsManagerEndpoint: !Sub 'https://secretsmanager.${AWS::Region}.amazonaws.com'
         AccessTokenArn: !Ref LightwaveAccessToken
-
-Parameters:
-  AppId:
-    Type: String
 
 Resources:
   IncandescentLambdaBasicExecutionRole:
@@ -54,6 +50,7 @@ Resources:
                 - sqs:GetQueueUrl
                 - sqs:SendMessage
                 - sqs:ReceiveMessage
+                - sqs:DeleteMessage
                 Resource: '*'
   
   ApiGatewayRole:
@@ -109,7 +106,7 @@ Resources:
           Parameters:
             Location: 'apigateway-openapi.yaml'
       Mode: overwrite
-      StageName: prod
+      StageName: live
       EndpointConfiguration: REGIONAL
       Auth:
         ApiKeyRequired: true
@@ -131,6 +128,7 @@ Resources:
     Properties:
       CodeUri: ./src/handlers/processDevices
       Handler: process-devices.lambda_handler
+      AutoPublishAlias: live
       Runtime: python3.9
       Layers:
         - !Ref PythonRestClientLambdaLayer
@@ -146,6 +144,7 @@ Resources:
     Properties:
       CodeUri: ./src/handlers/sendOperation
       Handler: send-operation.lambda_handler
+      AutoPublishAlias: live
       Runtime: python3.9
       Layers:
         - !Ref PythonRestClientLambdaLayer
@@ -156,6 +155,7 @@ Resources:
     Properties:
       CodeUri: ./src/handlers/upsertDevice
       Handler: upsert-device.lambda_handler
+      AutoPublishAlias: live
       Runtime: python3.9
       Role: !GetAtt IncandescentLambdaBasicExecutionRole.Arn
       Events:
@@ -284,6 +284,7 @@ Resources:
     Properties:
       CodeUri: ./src/handlers/refreshToken
       Handler: refresh-token.lambda_handler
+      AutoPublishAlias: live
       Runtime: python3.9
       Layers:
         - !Ref PythonRestClientLambdaLayer
