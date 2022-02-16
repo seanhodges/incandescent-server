@@ -1,0 +1,12 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+        python: 3.9
+  build:
+    commands:
+      - find template.yml
+      - aws cloudformation package --template-file template.yml --s3-bucket aws-sam-cli-managed-default-samclisourcebucket-1uhmeo0ymx86b --output-template-file packaged-template.yml
+artifacts:
+  files:
+    - packaged-template.yml
