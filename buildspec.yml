@@ -7,8 +7,8 @@ phases:
     commands:
       - find template.yml
       - aws s3 cp s3://codepipeline-eu-west-2-248832724193/secrets.yml .
-      - aws cloudformation build
-      - aws cloudformation package --template-file template.yml --s3-bucket codepipeline-eu-west-2-248832724193 --output-template-file packaged-template.yml
+      - sam build
+      - sam package --template-file template.yml --s3-bucket codepipeline-eu-west-2-248832724193 --output-template-file packaged-template.yml
 artifacts:
   files:
     - packaged-template.yml
