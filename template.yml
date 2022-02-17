@@ -1,13 +1,11 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: >-
-  Server for the Incandescent app
+  Serverless application using AWS SAM for headless home automation of various devices.
 
 # Transform section specifies one or more macros that AWS CloudFormation uses to process your template
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/transform-section-structure.html
 Transform: AWS::Serverless-2016-10-31
 
-# Shared configuration for all resources, more in
-# https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
     PermissionsBoundary: !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/${AWS::StackName}-${AWS::Region}-PermissionsBoundary'
