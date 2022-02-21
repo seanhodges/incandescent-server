@@ -17,6 +17,8 @@ def lambda_handler(event, context):
     process_devices()
     
 def process_devices():
+    global home_id
+
     access_token = secrets_manager.get_secret_value(SecretId=os.environ['AccessTokenArn']).get('SecretString')
 
     # Load latest structure, zones and rooms
@@ -87,6 +89,7 @@ def get_by_group_type(access_token, group_type):
     return result_body
 
 def get_sqs_queue(name):
+    global queue
     try:
         queue = sqs.get_queue_by_name(QueueName=name)
         logger.info(f'Got queue {name} at {queue.url}')
@@ -99,7 +102,7 @@ def get_sqs_queue(name):
 queue = get_sqs_queue(os.environ['DeviceReceivedQueueName'])
 
 def publish_to_sqs(device, feature_set, room_group, zone_group):
-    # TODO: Fetch the current queue name
+    global queue
     try:
         message = {
             'zoneData': zone_group,
