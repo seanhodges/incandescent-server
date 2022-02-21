@@ -133,6 +133,7 @@ Resources:
         - !Ref PythonRestClientLambdaLayer
       Role: !GetAtt IncandescentLambdaBasicExecutionRole.Arn
       Tracing: Active
+      Timeout: 10
       Events:
         ScheduledEvent:
           Type: Schedule
