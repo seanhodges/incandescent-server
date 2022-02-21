@@ -11,6 +11,8 @@ secrets_manager = boto3.client('secretsmanager', endpoint_url=os.environ['Secret
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
+home_id = None
+
 def lambda_handler(event, context):
     process_devices()
     
@@ -18,7 +20,7 @@ def process_devices():
     access_token = secrets_manager.get_secret_value(SecretId=os.environ['AccessTokenArn']).get('SecretString')
 
     # Load latest structure, zones and rooms
-    home_id = get_top_level_structure_id(access_token)
+    home_id = get_top_level_structure_id(access_token) if home_id is None else home_id
     structure = get_structure_for_id(access_token, home_id)
     room_groups = get_by_group_type(access_token, 'rooms')
     zone_groups = get_by_group_type(access_token, 'zones')
@@ -94,9 +96,10 @@ def get_sqs_queue(name):
     else:
         return queue
 
+queue = get_sqs_queue(os.environ['DeviceReceivedQueueName'])
+
 def publish_to_sqs(device, feature_set, room_group, zone_group):
     # TODO: Fetch the current queue name
-    queue = get_sqs_queue(os.environ['DeviceReceivedQueueName'])
     try:
         message = {
             'zoneData': zone_group,
