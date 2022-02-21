@@ -117,6 +117,7 @@ Resources:
           Throttle:
             BurstLimit: 250
             RateLimit: 500
+      TracingEnabled: True
       AccessLogSetting:
         DestinationArn: !Sub ${ApiAccessLogGroup.Arn}
         Format: "{ 'requestId':'$context.requestId', 'ip': '$context.identity.sourceIp', 'caller':'$context.identity.caller', 'user':'$context.identity.user','requestTime':'$context.requestTime', 'xrayTraceId':'$context.xrayTraceId', 'wafResponseCode':'$context.wafResponseCode', 'httpMethod':'$context.httpMethod','resourcePath':'$context.resourcePath', 'status':'$context.status','protocol':'$context.protocol', 'responseLength':'$context.responseLength' }"
@@ -131,6 +132,7 @@ Resources:
       Layers:
         - !Ref PythonRestClientLambdaLayer
       Role: !GetAtt IncandescentLambdaBasicExecutionRole.Arn
+      Tracing: Active
       Events:
         ScheduledEvent:
           Type: Schedule
@@ -147,6 +149,7 @@ Resources:
       Layers:
         - !Ref PythonRestClientLambdaLayer
       Role: !GetAtt IncandescentLambdaBasicExecutionRole.Arn
+      Tracing: Active
 
   UpsertDeviceFunction:
     Type: AWS::Serverless::Function
@@ -156,6 +159,7 @@ Resources:
       AutoPublishAlias: live
       Runtime: python3.9
       Role: !GetAtt IncandescentLambdaBasicExecutionRole.Arn
+      Tracing: Active
       Events:
         SQSEvent:
           Type: SQS
@@ -287,6 +291,7 @@ Resources:
       Layers:
         - !Ref PythonRestClientLambdaLayer
       Role: !GetAtt RefreshTokenRole.Arn
+      Tracing: Active
       Environment:
         Variables:
           ClientAuthTokenArn: !Ref LightwaveClientAuthToken
