@@ -30,12 +30,16 @@ def process_devices():
     for device in structure['devices']:
         # Process each feature set in the device
         for feature_set in device['featureSets']:
-            # Get the room for the feature set (match on featureSetId)
-            room_group = list(filter(lambda r, fsi=feature_set['featureSetId']: fsi in r["featureSets"], room_groups))[0]
-            # Get the zone for the room (match on room groupId)
-            zone_group = list(filter(lambda z, rg=room_group['groupId']: rg in z["rooms"], zone_groups['zone']))[0]
-            # Publish SQS message with device, room, and zone data
-            publish_to_sqs(device, feature_set, room_group, zone_group)
+            try:
+                # Get the room for the feature set (match on featureSetId)
+                room_group = list(filter(lambda r, fsi=feature_set['featureSetId']: fsi in r["featureSets"], room_groups))[0]
+                # Get the zone for the room (match on room groupId)
+                zone_group = list(filter(lambda z, rg=room_group['groupId']: rg in z["rooms"], zone_groups['zone']))[0]
+                # Publish SQS message with device, room, and zone data
+                publish_to_sqs(device, feature_set, room_group, zone_group)
+            except IndexError:
+                logger.error(f'Could not process device {device["name"]}', exc_info=1)
+
 
 def get_top_level_structure_id(access_token):
     logger.info(f'Getting top level structure id')
