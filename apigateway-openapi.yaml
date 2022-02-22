@@ -108,7 +108,13 @@ paths:
         type: "aws"
         httpMethod: "POST"
         uri: 
-          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${SendOperationFunction.Arn}:live/invocations"
+          Fn::Join:
+            - ""
+            - "arn:aws:apigateway:"
+            - Ref: AWS::Region
+            - ":lambda:path/2015-03-31/functions/"
+            - Fn::GetAtt: "SendOperationFunction.Arn"
+            - ":live/invocations"
         credentials:
           Fn::GetAtt: "IncandescentLambdaBasicExecutionRole.Arn"
         responses:
