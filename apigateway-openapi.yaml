@@ -39,11 +39,7 @@ paths:
         type: "aws"
         httpMethod: "POST"
         uri:
-          Fn::Join:
-            - ""
-            - - "arn:aws:apigateway:"
-              - Ref: AWS::Region
-              - ":dynamodb:action/Query"
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:dynamodb:action/Query"
         credentials:
           Fn::GetAtt: "ApiGatewayRole.Arn"
         responses:
@@ -55,8 +51,9 @@ paths:
           integration.request.path.device: "method.request.path.device"
           integration.request.path.featureset: "method.request.path.featureset"
         requestTemplates:
-          application/json: "#set($deviceRef = \"$input.params('zone')/$input.params('room')/$input.params('device')/$input.params('featureset')\"\
-            )\r\n{\r\n    \"TableName\": \"test-stack-DeviceTable-MGKXW4KKJRMR\",\r\
+          application/json: 
+              Fn::Sub: "#set($deviceRef = \"$input.params('zone')/$input.params('room')/$input.params('device')/$input.params('featureset')\"\
+            )\r\n{\r\n    \"TableName\": \"${DeviceTable}\",\r\
             \n    \"KeyConditionExpression\": \"userId=:v_userId AND deviceRef=:v_deviceRef\"\
             ,\r\n    \"ExpressionAttributeValues\": {\r\n        \":v_userId\": {\"\
             S\":\"seanhodges\"}, \r\n        \":v_deviceRef\": {\"S\":\"$deviceRef\"\
@@ -111,13 +108,9 @@ paths:
         type: "aws"
         httpMethod: "POST"
         uri: 
-          Fn::Join:
-            - ""
-            - - "arn:aws:apigateway:"
-              - Ref: AWS::Region
-              - ":lambda:path/2015-03-31/functions/"
-              - Fn::GetAtt: "SendOperationFunction.Arn"
-              - ":live/invocations"
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${SendOperationFunction.Arn}:live/invocations"
+        credentials:
+          Fn::GetAtt: "IncandescentLambdaBasicExecutionRole.Arn"
         responses:
           default:
             statusCode: "200"
