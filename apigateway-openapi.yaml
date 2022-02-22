@@ -115,8 +115,6 @@ paths:
               - ":lambda:path/2015-03-31/functions/"
               - Fn::GetAtt: "SendOperationFunction.Arn"
               - ":live/invocations"
-        credentials:
-          Fn::GetAtt: "IncandescentLambdaBasicExecutionRole.Arn"
         responses:
           default:
             statusCode: "200"
