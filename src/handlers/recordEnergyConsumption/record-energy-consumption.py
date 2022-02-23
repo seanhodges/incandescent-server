@@ -41,9 +41,9 @@ def record_energy_consumption():
             update_current_power_usage(device_name, current_power_value)
             update_energy_usage(device_name, energy_usage_value)
         except ClientError:
-            logger.error(f'Server error while processing device {device["name"]}', exc_info=1)
+            logger.error(f'Server error while processing device {device["deviceName"]}', exc_info=1)
         except Exception:
-            logger.error(f'Could not process device {device["name"]}', exc_info=1)
+            logger.error(f'Could not process device {device["deviceName"]}', exc_info=1)
 
 def update_current_power_usage(device_name, current_power_value):
     current_power_usage_metric.put_data(
