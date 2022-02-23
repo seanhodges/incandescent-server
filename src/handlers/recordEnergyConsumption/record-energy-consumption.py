@@ -32,7 +32,7 @@ def record_energy_consumption():
 
     for device in devices:
         try:
-            device_name = device['name']
+            device_name = device['deviceName']
 
             # Update energy values
             current_power_value = get_feature_value(access_token, device['currentPowerId'])
