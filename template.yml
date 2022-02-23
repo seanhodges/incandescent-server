@@ -44,6 +44,7 @@ Resources:
                 - dynamodb:BatchWriteItem
                 - dynamodb:PutItem
                 - dynamodb:UpdateItem
+                - dynamodb:Scan
                 - secretsmanager:GetSecretValue
                 - sqs:GetQueueAttributes
                 - sqs:GetQueueUrl
