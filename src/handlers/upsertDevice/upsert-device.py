@@ -27,6 +27,8 @@ def upsert_device(zone_data, room_data, device_data, feature_set_data):
     feature_set_id, feature_set_name = get_feature_set_attrs(feature_set_data)
     identify_id = get_feature_attrs(feature_set_data, 'identify')
     protection_id = get_feature_attrs(feature_set_data, 'protection')
+    power_id = get_feature_attrs(feature_set_data, 'power')
+    energy_id = get_feature_attrs(feature_set_data, 'energy')
     switch_id = get_feature_attrs(feature_set_data, 'switch')
     dim_level_id = get_feature_attrs(feature_set_data, 'dimLevel')
 
@@ -47,6 +49,9 @@ def upsert_device(zone_data, room_data, device_data, feature_set_data):
             'featureSetId': feature_set_id,
             'identifyId': identify_id,
             'protectionId': protection_id,
+            'currentPowerId': power_id, # W
+            'energyUsageId': energy_id, # Wh
+            'energyUsageDuration': 'week',
             'switchId': switch_id,
             'dimLevelId': dim_level_id,
         }
