@@ -35,11 +35,13 @@ def record_energy_consumption():
             device_name = device['deviceName']
 
             # Update energy values
-            current_power_value = get_feature_value(access_token, device['currentPowerId'])
-            energy_usage_value = get_feature_value(access_token, device['energyUsageId'])
             # TODO: Store hourly/weekly/monthly/yearly reset metrics in a DB and aggregate for the metric value
-            update_current_power_usage(device_name, current_power_value)
-            update_energy_usage(device_name, energy_usage_value)
+            if device['currentPowerId']:
+                current_power_value = get_feature_value(access_token, device['currentPowerId'])
+                update_current_power_usage(device_name, current_power_value)
+            if device['energyUsageId']:
+                energy_usage_value = get_feature_value(access_token, device['energyUsageId'])
+                update_energy_usage(device_name, energy_usage_value)
         except ClientError:
             logger.error(f'Server error while processing device {device["deviceName"]}', exc_info=1)
         except Exception:
@@ -51,7 +53,6 @@ def update_current_power_usage(device_name, current_power_value):
             {
                 'MetricName': current_power_usage_metric.metric_name,
                 'Value': current_power_value,
-                'Unit': 'W',
                 'Dimensions': [
                     { 'Name': 'device_name', 'Value': device_name }
                 ]
@@ -65,7 +66,6 @@ def update_energy_usage(device_name, energy_usage_value):
             {
                 'MetricName': energy_usage_metric.metric_name,
                 'Value': energy_usage_value,
-                'Unit': 'Wh',
                 'Dimensions': [
                     { 'Name': 'device_name', 'Value': device_name }
                 ]
