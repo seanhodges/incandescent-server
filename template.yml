@@ -322,6 +322,8 @@ Resources:
       Handler: record-energy-consumption.lambda_handler
       AutoPublishAlias: live
       Runtime: python3.9
+      Layers:
+        - !Ref PythonRestClientLambdaLayer
       Role: !GetAtt IncandescentLambdaBasicExecutionRole.Arn
       Tracing: Active
       Events:
