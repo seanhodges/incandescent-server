@@ -51,6 +51,7 @@ Resources:
                 - sqs:SendMessage
                 - sqs:ReceiveMessage
                 - sqs:DeleteMessage
+                - cloudwatch:PutMetricData
                 Resource: '*'
   
   ApiGatewayRole:
