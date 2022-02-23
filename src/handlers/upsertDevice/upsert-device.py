@@ -2,7 +2,6 @@ import json
 import logging
 import boto3
 import os
-from boto3.dynamodb.conditions import Key
 
 dynamodb = boto3.resource('dynamodb')
 

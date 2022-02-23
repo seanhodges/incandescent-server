@@ -315,6 +315,21 @@ Resources:
         # See https://forums.aws.amazon.com/thread.jspa?threadID=304917
         AutomaticallyAfterDays: 1
 
+  RecordEnergyConsumptionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./src/handlers/recordEnergyConsumption
+      Handler: record-energy-consumption.lambda_handler
+      AutoPublishAlias: live
+      Runtime: python3.9
+      Role: !GetAtt IncandescentLambdaBasicExecutionRole.Arn
+      Tracing: Active
+      Events:
+        ScheduledEvent:
+          Type: Schedule
+          Properties:
+            Schedule: 'rate(1 hour)'
+
 Outputs:
   ServerApi:
     Description: URL for the server API
