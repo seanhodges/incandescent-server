@@ -25,18 +25,20 @@ def record_energy_consumption():
     table = dynamodb.Table(os.environ['DeviceTableName'])
 
     response = table.scan(
-        FilterExpression='attribute_not_exists(currentPowerId) AND attribute_not_exists(energyUsageId)',
+        FilterExpression='attribute_exists(currentPowerId) OR attribute_exists(energyUsageId)',
         ProjectionExpression='deviceRef,deviceName,currentPowerId,energyUsageId'
     )
     devices = response['Items']
 
     while 'LastEvaluatedKey' in response:
         response = table.scan(
-            FilterExpression='attribute_not_exists(currentPowerId) AND attribute_not_exists(energyUsageId)',
+            FilterExpression='attribute_exists(currentPowerId) OR attribute_exists(energyUsageId)',
             ProjectionExpression='deviceRef,deviceName,currentPowerId,energyUsageId',
             ExclusiveStartKey=response['LastEvaluatedKey']
         )
         devices.extend(response['Items'])
+
+    logger.info(f'Found {len(devices)} devices with energy stats')
 
     for device in devices:
         update_metrics(access_token, device)
@@ -47,6 +49,8 @@ def update_metrics(access_token, device):
             metric_data = []
             device_name = device['deviceName']
             device_ref = device['deviceRef']
+            
+            logger.info(f'Recording energy stats for {device_ref}')
 
             # Update energy values
             # TODO: Store hourly/weekly/monthly/yearly reset metrics in a DB and aggregate for the metric value
