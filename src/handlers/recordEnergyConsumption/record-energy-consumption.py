@@ -60,7 +60,6 @@ def update_metrics(access_token, device):
                         'MetricName': current_power_usage_metric.metric_name,
                         'Value': current_power_value,
                         'Dimensions': [
-                            { 'Name': 'device_name', 'Value': device_name },
                             { 'Name': 'device_ref', 'Value': device_ref }
                         ]
                 })
@@ -71,7 +70,6 @@ def update_metrics(access_token, device):
                     'MetricName': energy_usage_metric.metric_name,
                     'Value': energy_usage_value,
                     'Dimensions': [
-                        { 'Name': 'device_name', 'Value': device_name },
                         { 'Name': 'device_ref', 'Value': device_ref }
                     ]
                 })
