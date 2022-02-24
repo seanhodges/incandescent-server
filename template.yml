@@ -142,6 +142,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: 'rate(10 minutes)'
+            Enabled: false
 
   SendOperationFunction:
     Type: AWS::Serverless::Function
@@ -328,7 +329,9 @@ Resources:
         - !Ref PythonRestClientLambdaLayer
       Role: !GetAtt IncandescentLambdaBasicExecutionRole.Arn
       Tracing: Active
-      Timeout: 30
+      Timeout: 15
+      MemorySize: 256
+
       Events:
         ScheduledEvent:
           Type: Schedule
