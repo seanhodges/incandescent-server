@@ -293,6 +293,9 @@ Resources:
         - !Ref PythonRestClientLambdaLayer
       Role: !GetAtt RefreshTokenRole.Arn
       Tracing: Active
+      Policies: 
+        - LambdaInvokePolicy:
+            FunctionName: !Ref RefreshTokenTriggerFunction
       Environment:
         Variables:
           ClientAuthTokenArn: !Ref LightwaveClientAuthToken
