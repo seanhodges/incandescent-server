@@ -13,6 +13,5 @@ def lambda_handler(event, context):
     logger.info(f'Rotating secret {secret_id}')
     secrets_manager.rotate_secret(
         SecretId=secret_id,
-        RotationLambdaARN=rotation_lambda_arn,
-        RotateImmediately=True
+        RotationLambdaARN=rotation_lambda_arn
     )
