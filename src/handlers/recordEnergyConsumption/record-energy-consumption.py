@@ -11,6 +11,8 @@ secrets_manager = boto3.client('secretsmanager', endpoint_url=os.environ['Secret
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
+METRIC_BATCH_SIZE = 10
+
 current_power_usage_metric = cloudwatch.Metric('incandescent_device_energy','current_power_usage')
 energy_usage_metric = cloudwatch.Metric('incandescent_device_energy','energy_usage')
 
@@ -40,14 +42,19 @@ def record_energy_consumption():
 
     logger.info(f'Found {len(devices)} devices with energy stats')
 
-    for device in devices:
-        update_metrics(access_token, device)
-
-
-def update_metrics(access_token, device):
-        try:
+    metric_data = []
+    for idx, device in enumerate(devices):
+        metric_data += fetch_metrics(access_token, device)
+        if idx % METRIC_BATCH_SIZE == 0 and len(metric_data) > 0:
+            # Push metrics in batches
+            energy_usage_metric.put_data(MetricData=metric_data)
             metric_data = []
-            device_name = device['deviceName']
+    if len(metric_data) > 0:
+        energy_usage_metric.put_data(MetricData=metric_data)
+
+def fetch_metrics(access_token, device):
+        metric_data = []
+        try:
             device_ref = device['deviceRef']
             
             logger.info(f'Recording energy stats for {device_ref}')
@@ -73,13 +80,11 @@ def update_metrics(access_token, device):
                         { 'Name': 'device_ref', 'Value': device_ref }
                     ]
                 })
-            
-            if len(metric_data) > 0:
-                energy_usage_metric.put_data(MetricData=metric_data)
         except ClientError:
             logger.error(f'Server error while processing device {device["deviceRef"]}', exc_info=1)
         except Exception:
             logger.error(f'Could not process device {device["deviceRef"]}', exc_info=1)
+        return metric_data
 
 
 def get_feature_value(access_token, feature_id):

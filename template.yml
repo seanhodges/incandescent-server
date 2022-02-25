@@ -330,8 +330,6 @@ Resources:
       Role: !GetAtt IncandescentLambdaBasicExecutionRole.Arn
       Tracing: Active
       Timeout: 15
-      MemorySize: 256
-
       Events:
         ScheduledEvent:
           Type: Schedule
