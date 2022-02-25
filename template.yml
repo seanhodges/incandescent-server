@@ -264,9 +264,6 @@ Resources:
                   - secretsmanager:PutSecretValue
                   - secretsmanager:UpdateSecretVersionStage
                 Resource: '*'
-                # Condition:
-                #   StringEquals:
-                #     secretsmanager:resource/AllowRotationLambdaArn: 'arn:aws:lambda:${AWS:Region}:${AWS:AccountId}:function:${AWS::StackName}-RefreshTokenFunction'
       AssumeRolePolicyDocument:
         Version: 2012-10-17
         Statement:
@@ -285,8 +282,6 @@ Resources:
       Principal: 'secretsmanager.amazonaws.com'
 
   RefreshTokenFunction:
-    # Function named so it can be referenced in RefreshTokenPolicy
-    Name: ${AWS::StackName}-RefreshTokenFunction
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./src/handlers/refreshToken
@@ -302,21 +297,30 @@ Resources:
           ClientAuthTokenArn: !Ref LightwaveClientAuthToken
           RefreshTokenArn: !Ref LightwaveRefreshToken
 
+  RefreshTokenTriggerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./src/handlers/refreshToken
+      Handler: refresh-token-trigger.lambda_handler
+      AutoPublishAlias: live
+      Runtime: python3.9
+      Role: !GetAtt RefreshTokenRole.Arn
+      Tracing: Active
+      Environment:
+        Variables:
+          SecretId: !Ref LightwaveAccessToken
+          RotationLambdaARN: !GetAtt RefreshTokenFunction.Arn
+      Events:
+        ScheduledEvent:
+          Type: Schedule
+          Properties:
+            Schedule: 'rate(8 hours)'
+
   LightwaveAccessToken:
     Type: AWS::SecretsManager::Secret
     Properties:
       Description: Leave blank. This is set by the token refresh function
       SecretString: <UNSET>
-
-  LightwaveTokenRotationSchedule:
-    Type: AWS::SecretsManager::RotationSchedule
-    Properties:
-      SecretId: !Ref LightwaveAccessToken
-      RotationLambdaARN: !GetAtt RefreshTokenFunction.Arn
-      RotationRules:
-        # TODO: Should be 10h but SM doesn't support less than 1d. Should make a custom trigger.
-        # See https://forums.aws.amazon.com/thread.jspa?threadID=304917
-        AutomaticallyAfterDays: 1
 
   RecordEnergyConsumptionFunction:
     Type: AWS::Serverless::Function

@@ -13,7 +13,7 @@ logger.setLevel(logging.INFO)
 class BadInputError(Exception):
     pass
 
-def lambda_handler(event, context):
+def lambda_handler(event):
     secrets_manager = boto3.client('secretsmanager', endpoint_url=os.environ['SecretsManagerEndpoint'])
     access_token = secrets_manager.get_secret_value(SecretId=os.environ['AccessTokenArn']).get('SecretString')
 
