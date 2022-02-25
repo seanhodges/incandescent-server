@@ -16,7 +16,7 @@ METRIC_BATCH_SIZE = 10
 current_power_usage_metric = cloudwatch.Metric('incandescent_device_energy','current_power_usage')
 energy_usage_metric = cloudwatch.Metric('incandescent_device_energy','energy_usage')
 
-def lambda_handler():
+def lambda_handler(event, context):
     record_energy_consumption()
 
 

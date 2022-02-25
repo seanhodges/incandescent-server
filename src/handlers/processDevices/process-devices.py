@@ -13,7 +13,7 @@ logger.setLevel(logging.INFO)
 
 home_id = None
 
-def lambda_handler():
+def lambda_handler(event, context):
     process_devices()
     
 def process_devices():

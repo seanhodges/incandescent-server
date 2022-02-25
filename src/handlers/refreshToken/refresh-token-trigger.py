@@ -7,7 +7,7 @@ secrets_manager = boto3.client('secretsmanager', endpoint_url=os.environ['Secret
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-def lambda_handler():
+def lambda_handler(event, context):
     secret_id = os.environ['SecretId']
     rotation_lambda_arn = os.environ['RotationLambdaARN']
     logger.info(f'Rotating secret {secret_id}')
