@@ -327,7 +327,7 @@ Resources:
       Handler: refresh-token-trigger.lambda_handler
       AutoPublishAlias: live
       Runtime: python3.9
-      Role: !GetAtt RefreshTokenRole.Arn
+      Role: !GetAtt RefreshTokenTriggerRole.Arn
       Tracing: Active
       Environment:
         Variables:
