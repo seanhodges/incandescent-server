@@ -263,7 +263,6 @@ Resources:
                   - secretsmanager:GetSecretValue
                   - secretsmanager:PutSecretValue
                   - secretsmanager:UpdateSecretVersionStage
-                  - secretsmanager:RotateSecret
                 Resource: '*'
       AssumeRolePolicyDocument:
         Version: 2012-10-17
@@ -274,22 +273,51 @@ Resources:
                 - lambda.amazonaws.com
             Action: sts:AssumeRole
   
-  RefreshTokenTriggerInvokePermission:
-    Type: AWS::Lambda::Permission
-    DependsOn: RefreshTokenFunction
+    RefreshTokenTriggerRole:
+    Type: AWS::IAM::Role
     Properties:
-      FunctionName: !GetAtt RefreshTokenFunction.Arn
-      Action: lambda:InvokeFunction
-      Principal: 'lambda.amazonaws.com'
-      SourceArn: !GetAtt RefreshTokenTriggerFunction.Arn
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: RefreshTokenTriggerPolicy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - secretsmanager:RotateSecret
+                Resource: !Ref LightwaveAccessToken
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action: sts:AssumeRole
+
+  # RefreshTokenTriggerInvokePermission:
+  #   Type: AWS::Lambda::Permission
+  #   DependsOn: RefreshTokenFunction
+  #   Properties:
+  #     FunctionName: !GetAtt RefreshTokenFunction.Arn
+  #     Action: lambda:InvokeFunction
+  #     Principal: 'lambda.amazonaws.com'
+  #     SourceArn: !GetAtt RefreshTokenTriggerFunction.Arn
+      # Condition:
+      #   StringEquals:
+      #     aws:SourceAccount: ${AWS::AccountId}
   
-  RefreshTokenInvokePermission:
-    Type: AWS::Lambda::Permission
-    DependsOn: RefreshTokenFunction
-    Properties:
-      FunctionName: !GetAtt RefreshTokenFunction.Arn
-      Action: lambda:InvokeFunction
-      Principal: 'secretsmanager.amazonaws.com'
+  # RefreshTokenInvokePermission:
+  #   Type: AWS::Lambda::Permission
+  #   DependsOn: RefreshTokenFunction
+  #   Properties:
+  #     FunctionName: !GetAtt RefreshTokenFunction.Arn
+  #     Action: lambda:InvokeFunction
+  #     Principal: 'secretsmanager.amazonaws.com'
+      # Condition:
+      #   StringEquals:
+      #     aws:SourceAccount: ${AWS::AccountId}
 
   RefreshTokenFunction:
     Type: AWS::Serverless::Function
@@ -325,6 +353,14 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: 'rate(8 hours)'
+  
+  LightwaveTokenRotationSchedule:
+    Type: AWS::SecretsManager::RotationSchedule
+    Properties:
+      SecretId: !Ref LightwaveAccessToken
+      RotationLambdaARN: !GetAtt RefreshTokenFunction.Arn
+      RotationRules:
+        AutomaticallyAfterDays: 31 # We trigger this manually
 
   LightwaveAccessToken:
     Type: AWS::SecretsManager::Secret
