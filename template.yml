@@ -272,8 +272,8 @@ Resources:
               Service:
                 - lambda.amazonaws.com
             Action: sts:AssumeRole
-  
-    RefreshTokenTriggerRole:
+
+  RefreshTokenTriggerRole:
     Type: AWS::IAM::Role
     Properties:
       ManagedPolicyArns:
@@ -296,28 +296,16 @@ Resources:
                 - lambda.amazonaws.com
             Action: sts:AssumeRole
 
-  # RefreshTokenTriggerInvokePermission:
-  #   Type: AWS::Lambda::Permission
-  #   DependsOn: RefreshTokenFunction
-  #   Properties:
-  #     FunctionName: !GetAtt RefreshTokenFunction.Arn
-  #     Action: lambda:InvokeFunction
-  #     Principal: 'lambda.amazonaws.com'
-  #     SourceArn: !GetAtt RefreshTokenTriggerFunction.Arn
-      # Condition:
-      #   StringEquals:
-      #     aws:SourceAccount: ${AWS::AccountId}
-  
-  # RefreshTokenInvokePermission:
-  #   Type: AWS::Lambda::Permission
-  #   DependsOn: RefreshTokenFunction
-  #   Properties:
-  #     FunctionName: !GetAtt RefreshTokenFunction.Arn
-  #     Action: lambda:InvokeFunction
-  #     Principal: 'secretsmanager.amazonaws.com'
-      # Condition:
-      #   StringEquals:
-      #     aws:SourceAccount: ${AWS::AccountId}
+  RefreshTokenInvokePermission:
+    Type: AWS::Lambda::Permission
+    DependsOn: RefreshTokenFunction
+    Properties:
+      FunctionName: !GetAtt RefreshTokenFunction.Arn
+      Action: lambda:InvokeFunction
+      Principal: 'secretsmanager.amazonaws.com'
+      Condition:
+        StringEquals:
+          aws:SourceAccount: !Ref AWS::AccountId
 
   RefreshTokenFunction:
     Type: AWS::Serverless::Function
@@ -353,14 +341,15 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: 'rate(8 hours)'
-  
+
   LightwaveTokenRotationSchedule:
     Type: AWS::SecretsManager::RotationSchedule
     Properties:
       SecretId: !Ref LightwaveAccessToken
       RotationLambdaARN: !GetAtt RefreshTokenFunction.Arn
       RotationRules:
-        AutomaticallyAfterDays: 31 # We trigger this manually
+        # We rotate manually with RefreshTokenTriggerFunction
+        AutomaticallyAfterDays: 31
 
   LightwaveAccessToken:
     Type: AWS::SecretsManager::Secret
