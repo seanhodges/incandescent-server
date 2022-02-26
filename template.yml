@@ -303,9 +303,6 @@ Resources:
       FunctionName: !GetAtt RefreshTokenFunction.Arn
       Action: lambda:InvokeFunction
       Principal: 'secretsmanager.amazonaws.com'
-      Condition:
-        StringEquals:
-          aws:SourceAccount: !Ref AWS::AccountId
 
   RefreshTokenFunction:
     Type: AWS::Serverless::Function
