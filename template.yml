@@ -340,9 +340,7 @@ Resources:
     DependsOn: RefreshTokenTriggerFunction
     Properties:
       FunctionName: !GetAtt RefreshTokenTriggerFunction.Arn
-      Action: 
-        - lambda:InvokeFunction
-        - secretsmanager:RotateSecret
+      Action: secretsmanager:RotateSecret
       Principal: 'events.amazonaws.com'
 
   RefreshTokenTriggerFunction:
