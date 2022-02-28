@@ -69,7 +69,7 @@ Resources:
         ManagedPolicyArns:
           - arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs
         Policies:
-          - PolicyName: IncandescentApiGatewayPolicy
+          - PolicyName: ApiGatewayDBPolicy
             PolicyDocument:
               Version: 2012-10-17
               Statement:
@@ -78,7 +78,17 @@ Resources:
                     - dynamodb:BatchGetItem
                     - dynamodb:GetItem
                     - dynamodb:Query
-                  Resource: '*'
+                  Resource:
+                    - !GetAtt DeviceTable.Arn
+          - PolicyName: ApiGatewayEBPolicy
+            PolicyDocument:
+              Version: 2012-10-17
+              Statement:
+                - Effect: Allow
+                  Action:
+                    - 'events:PutEvents'
+                  Resource:
+                    - !GetAtt OperationEventBus.Arn
 
   CloudWatchAccount:
     Type: AWS::ApiGateway::Account
@@ -241,6 +251,11 @@ Resources:
               - deviceName
               - deviceRef
 
+  OperationEventBus:
+    Type: AWS::Events::EventBus
+    Properties:
+      Name: !Sub ${AWS::StackName}-OperationEventBus
+
   'Fn::Transform':
     Name: AWS::Include
     Description: Local-defined secrets
@@ -319,6 +334,16 @@ Resources:
         Variables:
           ClientAuthTokenArn: !Ref LightwaveClientAuthToken
           RefreshTokenArn: !Ref LightwaveRefreshToken
+
+  RefreshTokenInvokeTriggerPermission:
+    Type: AWS::Lambda::Permission
+    DependsOn: RefreshTokenTriggerFunction
+    Properties:
+      FunctionName: !GetAtt RefreshTokenTriggerFunction.Arn
+      Action: 
+        - lambda:InvokeFunction
+        - secretsmanager:RotateSecret
+      Principal: 'events.amazonaws.com'
 
   RefreshTokenTriggerFunction:
     Type: AWS::Serverless::Function

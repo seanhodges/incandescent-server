@@ -3,6 +3,48 @@ info:
   title: "Incandescent-Server"
   version: "2021-08-23T20:24:26Z"
 paths:
+  /events/lightwave/operations:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OperationLightwaveWebhook"
+        required: true
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-request-validator: "Validate body"
+      x-amazon-apigateway-integration:
+        type: "aws"
+        httpMethod: "POST"
+        credentials:
+          Fn::GetAtt: "ApiGatewayRole.Arn"
+        uri: 
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:events:action/PutEvents"
+        passthroughBehavior: "when_no_templates"
+        requestTemplates: 
+          application/json: 
+            Fn::Sub: |-
+              #set($context.requestOverride.header.X-Amz-Target = "AWSEvents.PutEvents")
+              #set($context.requestOverride.header.Content-Type = "application/x-amz-json-1.1")            
+              #set($inputRoot = $input.path('$')) 
+              { 
+                "Entries": [
+                  #set($trigger = $inputRoot.triggerEvent)
+                  #set($payload = $inputRoot.payload)
+                  {
+                    "Detail": "{ \"id\": \"$trigger.id\", \"trigger_time\": \"$payload.time\", \"value\": \"$payload.value\" }",
+                    "DetailType": "operation_lightwave",
+                    "EventBusName": "${OperationEventBus}",
+                    "Source":"lightwave_api"
+                  }
+                ]
+              }
   /devices/{zone}/{room}/{device}/{featureset}:
     get:
       parameters:
@@ -147,6 +189,25 @@ components:
       properties:
         errorMessage:
           type: "string"
+    OperationLightwaveWebhook:
+      title: "OperationLightwaveWebhook"
+      required:
+      - "id"
+      - "payload"
+      - "userId"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        userId:
+          type: "string"
+        payload:
+          type: "object"
+          properties:
+            time:
+              type: "number"
+            value:
+              type: "number"
     OperationInvoke:
       title: "OperationInvoke"
       required:
