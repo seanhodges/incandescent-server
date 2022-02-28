@@ -335,14 +335,6 @@ Resources:
           ClientAuthTokenArn: !Ref LightwaveClientAuthToken
           RefreshTokenArn: !Ref LightwaveRefreshToken
 
-  RefreshTokenInvokeTriggerPermission:
-    Type: AWS::Lambda::Permission
-    DependsOn: RefreshTokenTriggerFunction
-    Properties:
-      FunctionName: !GetAtt RefreshTokenTriggerFunction.Arn
-      Action: secretsmanager:RotateSecret
-      Principal: 'events.amazonaws.com'
-
   RefreshTokenTriggerFunction:
     Type: AWS::Serverless::Function
     Properties:
